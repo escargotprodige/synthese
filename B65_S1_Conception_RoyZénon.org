@@ -1,0 +1,14 @@
+* Présentation générale du projet
+* Présentation précise du projet
+* Présentation des patrons de conceptions envisagés
+** MVVM
+** GraphQL?
+* Aspects techniques de la conception
+** cas d'usage
+** diagramme de base de données
+** conception des interfaces usagers
+*** calculatrice
+*** liste parties
+*** liste templates
+*** détails partie
+*** détails template
