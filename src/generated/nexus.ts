@@ -50,8 +50,6 @@ export interface NexusGenInputs {
     name_not_in?: string[] | null; // [String!]
     name_not_starts_with?: string | null; // String
     name_starts_with?: string | null; // String
-    NOT?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
-    OR?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
   }
   UserWhereUniqueInput: { // input type
     id?: string | null; // ID
@@ -59,7 +57,7 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
-  UserOrderByInput: "createdAt_ASC" | "createdAt_DESC" | "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC" | "updatedAt_ASC" | "updatedAt_DESC"
+  UserOrderByInput: "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC"
 }
 
 export interface NexusGenRootTypes {

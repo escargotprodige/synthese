@@ -681,8 +681,6 @@ export interface UserWhereInput {
   name_ends_with?: string | null
   name_not_ends_with?: string | null
   AND?: UserWhereInput[]
-  OR?: UserWhereInput[]
-  NOT?: UserWhereInput[]
 }
 export type UserWhereInputInputObject =
   | Extract<keyof UserWhereInput, string>
@@ -715,8 +713,6 @@ export type UserWhereInputInputObject =
   | { name: 'name_ends_with', alias?: string  } 
   | { name: 'name_not_ends_with', alias?: string  } 
   | { name: 'AND', alias?: string  } 
-  | { name: 'OR', alias?: string  } 
-  | { name: 'NOT', alias?: string  } 
   
 export interface UserCreateInput {
   name?: string
@@ -746,8 +742,6 @@ export interface UserSubscriptionWhereInput {
   updatedFields_contains_some?: string[]
   node?: UserWhereInput | null
   AND?: UserSubscriptionWhereInput[]
-  OR?: UserSubscriptionWhereInput[]
-  NOT?: UserSubscriptionWhereInput[]
 }
 export type UserSubscriptionWhereInputInputObject =
   | Extract<keyof UserSubscriptionWhereInput, string>
@@ -757,8 +751,6 @@ export type UserSubscriptionWhereInputInputObject =
   | { name: 'updatedFields_contains_some', alias?: string  } 
   | { name: 'node', alias?: string  } 
   | { name: 'AND', alias?: string  } 
-  | { name: 'OR', alias?: string  } 
-  | { name: 'NOT', alias?: string  } 
   
 
 export type UserOrderByInputValues =
@@ -766,10 +758,6 @@ export type UserOrderByInputValues =
   | 'id_DESC'
   | 'name_ASC'
   | 'name_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
   
 export type MutationTypeValues =
   | 'CREATED'

@@ -60,14 +60,10 @@ type UserEdge {
 }
 
 enum UserOrderByInput {
-  createdAt_ASC
-  createdAt_DESC
   id_ASC
   id_DESC
   name_ASC
   name_DESC
-  updatedAt_ASC
-  updatedAt_DESC
 }
 
 input UserUpdateInput {
@@ -108,8 +104,6 @@ input UserWhereInput {
   name_not_in: [String!]
   name_not_starts_with: String
   name_starts_with: String
-  NOT: [UserWhereInput!]
-  OR: [UserWhereInput!]
 }
 
 input UserWhereUniqueInput {
