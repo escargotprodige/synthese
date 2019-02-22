@@ -2,3 +2,72 @@ type User {
   id: ID! @id
   name: String!
 }
+
+enum Rarity {
+  COMMON
+  UNCOMMON
+  RARE
+}
+
+type Brand {
+  id: ID! @id
+  name: String!
+  weapons: [Weapon]
+  weaponParts: [WeaponPart]
+}
+
+enum WeaponType {
+  PISTOL
+  SHOTGUN
+  ASSAULT_RIFLE
+  SMG
+}
+
+enum WeaponPartType {
+  BODY
+  BARREL
+  ACCESSORY
+  SIGHT
+  STOCK
+}
+
+enum ModifierType {
+  SCALE
+  PRE_ADD
+}
+
+type Attribute @embedded {
+  name: String!
+  value: Float
+}
+
+type WeaponBase {
+  id: ID! @id
+  rarity: Rarity
+  brand: Brand
+  type: WeaponType
+  attributes: [Attribute!]
+}
+
+type WeaponPart {
+  id: ID! @id
+  effects: [Effect!]
+  prefixes: [NameByBrand!]
+  titles: [NameByBrand!]
+  brand: Brand
+  weaponType: WeaponType
+  partType: WeaponPartType
+}
+
+type NameByBrand @embedded {
+  name: String!
+  brand: Brand
+}
+
+type Effect @embedded {
+  statToModify: String
+  modifierType: ModifierType
+  baseValueConstant: Float
+  baseValueAttribute: String
+  baseValueScaleConstant: Float
+}
