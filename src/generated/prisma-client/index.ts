@@ -14,7 +14,10 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
+  brand: (where?: BrandWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
+  weaponBase: (where?: WeaponBaseWhereInput) => Promise<boolean>;
+  weaponPart: (where?: WeaponPartWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -36,6 +39,25 @@ export interface Prisma {
    * Queries
    */
 
+  brand: (where: BrandWhereUniqueInput) => BrandPromise;
+  brands: (args?: {
+    where?: BrandWhereInput;
+    orderBy?: BrandOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Brand>;
+  brandsConnection: (args?: {
+    where?: BrandWhereInput;
+    orderBy?: BrandOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => BrandConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (args?: {
     where?: UserWhereInput;
@@ -55,12 +77,66 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => UserConnectionPromise;
+  weaponBase: (where: WeaponBaseWhereUniqueInput) => WeaponBasePromise;
+  weaponBases: (args?: {
+    where?: WeaponBaseWhereInput;
+    orderBy?: WeaponBaseOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<WeaponBase>;
+  weaponBasesConnection: (args?: {
+    where?: WeaponBaseWhereInput;
+    orderBy?: WeaponBaseOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => WeaponBaseConnectionPromise;
+  weaponPart: (where: WeaponPartWhereUniqueInput) => WeaponPartPromise;
+  weaponParts: (args?: {
+    where?: WeaponPartWhereInput;
+    orderBy?: WeaponPartOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<WeaponPart>;
+  weaponPartsConnection: (args?: {
+    where?: WeaponPartWhereInput;
+    orderBy?: WeaponPartOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => WeaponPartConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
    * Mutations
    */
 
+  createBrand: (data: BrandCreateInput) => BrandPromise;
+  updateBrand: (args: {
+    data: BrandUpdateInput;
+    where: BrandWhereUniqueInput;
+  }) => BrandPromise;
+  updateManyBrands: (args: {
+    data: BrandUpdateManyMutationInput;
+    where?: BrandWhereInput;
+  }) => BatchPayloadPromise;
+  upsertBrand: (args: {
+    where: BrandWhereUniqueInput;
+    create: BrandCreateInput;
+    update: BrandUpdateInput;
+  }) => BrandPromise;
+  deleteBrand: (where: BrandWhereUniqueInput) => BrandPromise;
+  deleteManyBrands: (where?: BrandWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (args: {
     data: UserUpdateInput;
@@ -77,6 +153,38 @@ export interface Prisma {
   }) => UserPromise;
   deleteUser: (where: UserWhereUniqueInput) => UserPromise;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
+  createWeaponBase: (data: WeaponBaseCreateInput) => WeaponBasePromise;
+  updateWeaponBase: (args: {
+    data: WeaponBaseUpdateInput;
+    where: WeaponBaseWhereUniqueInput;
+  }) => WeaponBasePromise;
+  updateManyWeaponBases: (args: {
+    data: WeaponBaseUpdateManyMutationInput;
+    where?: WeaponBaseWhereInput;
+  }) => BatchPayloadPromise;
+  upsertWeaponBase: (args: {
+    where: WeaponBaseWhereUniqueInput;
+    create: WeaponBaseCreateInput;
+    update: WeaponBaseUpdateInput;
+  }) => WeaponBasePromise;
+  deleteWeaponBase: (where: WeaponBaseWhereUniqueInput) => WeaponBasePromise;
+  deleteManyWeaponBases: (where?: WeaponBaseWhereInput) => BatchPayloadPromise;
+  createWeaponPart: (data: WeaponPartCreateInput) => WeaponPartPromise;
+  updateWeaponPart: (args: {
+    data: WeaponPartUpdateInput;
+    where: WeaponPartWhereUniqueInput;
+  }) => WeaponPartPromise;
+  updateManyWeaponParts: (args: {
+    data: WeaponPartUpdateManyMutationInput;
+    where?: WeaponPartWhereInput;
+  }) => BatchPayloadPromise;
+  upsertWeaponPart: (args: {
+    where: WeaponPartWhereUniqueInput;
+    create: WeaponPartCreateInput;
+    update: WeaponPartUpdateInput;
+  }) => WeaponPartPromise;
+  deleteWeaponPart: (where: WeaponPartWhereUniqueInput) => WeaponPartPromise;
+  deleteManyWeaponParts: (where?: WeaponPartWhereInput) => BatchPayloadPromise;
 
   /**
    * Subscriptions
@@ -86,9 +194,27 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  attribute: (
+    where?: AttributeSubscriptionWhereInput
+  ) => AttributeSubscriptionPayloadSubscription;
+  brand: (
+    where?: BrandSubscriptionWhereInput
+  ) => BrandSubscriptionPayloadSubscription;
+  effect: (
+    where?: EffectSubscriptionWhereInput
+  ) => EffectSubscriptionPayloadSubscription;
+  nameByBrand: (
+    where?: NameByBrandSubscriptionWhereInput
+  ) => NameByBrandSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
+  weaponBase: (
+    where?: WeaponBaseSubscriptionWhereInput
+  ) => WeaponBaseSubscriptionPayloadSubscription;
+  weaponPart: (
+    where?: WeaponPartSubscriptionWhereInput
+  ) => WeaponPartSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -99,9 +225,292 @@ export interface ClientConstructor<T> {
  * Types
  */
 
+export type Rarity = "COMMON" | "UNCOMMON" | "RARE" | "VERY_RARE" | "LEGENDARY";
+
+export type ModifierType = "SCALE" | "PRE_ADD";
+
+export type WeaponType =
+  | "PISTOL"
+  | "SHOTGUN"
+  | "ASSAULT_RIFLE"
+  | "SNIPER"
+  | "ROCKET_LAUNCHER"
+  | "SMG";
+
+export type WeaponPartType =
+  | "BODY"
+  | "BARREL"
+  | "ACCESSORY"
+  | "SIGHT"
+  | "GRIP"
+  | "STOCK";
+
+export type WeaponBaseOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "rarity_ASC"
+  | "rarity_DESC"
+  | "type_ASC"
+  | "type_DESC";
+
+export type WeaponPartOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "weaponType_ASC"
+  | "weaponType_DESC"
+  | "partType_ASC"
+  | "partType_DESC";
+
+export type BrandOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
+
 export type UserOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+
+export type BrandWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface WeaponBaseWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  rarity?: Rarity;
+  rarity_not?: Rarity;
+  rarity_in?: Rarity[] | Rarity;
+  rarity_not_in?: Rarity[] | Rarity;
+  brand?: BrandWhereInput;
+  type?: WeaponType;
+  type_not?: WeaponType;
+  type_in?: WeaponType[] | WeaponType;
+  type_not_in?: WeaponType[] | WeaponType;
+  attributes_some?: AttributeWhereInput;
+  attributes_every?: AttributeRestrictedWhereInput;
+  attributes_none?: AttributeRestrictedWhereInput;
+  AND?: WeaponBaseWhereInput[] | WeaponBaseWhereInput;
+}
+
+export interface BrandWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  weapons_some?: WeaponBaseWhereInput;
+  weaponParts_some?: WeaponPartWhereInput;
+  AND?: BrandWhereInput[] | BrandWhereInput;
+}
+
+export interface WeaponPartWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  effects_some?: EffectWhereInput;
+  effects_every?: EffectRestrictedWhereInput;
+  effects_none?: EffectRestrictedWhereInput;
+  prefixes_some?: NameByBrandWhereInput;
+  prefixes_every?: NameByBrandRestrictedWhereInput;
+  prefixes_none?: NameByBrandRestrictedWhereInput;
+  titles_some?: NameByBrandWhereInput;
+  titles_every?: NameByBrandRestrictedWhereInput;
+  titles_none?: NameByBrandRestrictedWhereInput;
+  brand?: BrandWhereInput;
+  weaponType?: WeaponType;
+  weaponType_not?: WeaponType;
+  weaponType_in?: WeaponType[] | WeaponType;
+  weaponType_not_in?: WeaponType[] | WeaponType;
+  partType?: WeaponPartType;
+  partType_not?: WeaponPartType;
+  partType_in?: WeaponPartType[] | WeaponPartType;
+  partType_not_in?: WeaponPartType[] | WeaponPartType;
+  AND?: WeaponPartWhereInput[] | WeaponPartWhereInput;
+}
+
+export interface EffectWhereInput {
+  AttributeToModify?: AttributeWhereInput;
+  modifierType?: ModifierType;
+  modifierType_not?: ModifierType;
+  modifierType_in?: ModifierType[] | ModifierType;
+  modifierType_not_in?: ModifierType[] | ModifierType;
+  baseValueConstant?: Float;
+  baseValueConstant_not?: Float;
+  baseValueConstant_in?: Float[] | Float;
+  baseValueConstant_not_in?: Float[] | Float;
+  baseValueConstant_lt?: Float;
+  baseValueConstant_lte?: Float;
+  baseValueConstant_gt?: Float;
+  baseValueConstant_gte?: Float;
+  baseValueAttribute?: AttributeWhereInput;
+  baseValueScaleConstant?: Float;
+  baseValueScaleConstant_not?: Float;
+  baseValueScaleConstant_in?: Float[] | Float;
+  baseValueScaleConstant_not_in?: Float[] | Float;
+  baseValueScaleConstant_lt?: Float;
+  baseValueScaleConstant_lte?: Float;
+  baseValueScaleConstant_gt?: Float;
+  baseValueScaleConstant_gte?: Float;
+  AND?: EffectWhereInput[] | EffectWhereInput;
+}
+
+export interface AttributeWhereInput {
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  value?: Float;
+  value_not?: Float;
+  value_in?: Float[] | Float;
+  value_not_in?: Float[] | Float;
+  value_lt?: Float;
+  value_lte?: Float;
+  value_gt?: Float;
+  value_gte?: Float;
+  AND?: AttributeWhereInput[] | AttributeWhereInput;
+}
+
+export interface EffectRestrictedWhereInput {
+  AttributeToModify?: AttributeRestrictedWhereInput;
+  modifierType?: ModifierType;
+  modifierType_not?: ModifierType;
+  modifierType_in?: ModifierType[] | ModifierType;
+  modifierType_not_in?: ModifierType[] | ModifierType;
+  baseValueConstant?: Float;
+  baseValueConstant_not?: Float;
+  baseValueConstant_in?: Float[] | Float;
+  baseValueConstant_not_in?: Float[] | Float;
+  baseValueConstant_lt?: Float;
+  baseValueConstant_lte?: Float;
+  baseValueConstant_gt?: Float;
+  baseValueConstant_gte?: Float;
+  baseValueAttribute?: AttributeRestrictedWhereInput;
+  baseValueScaleConstant?: Float;
+  baseValueScaleConstant_not?: Float;
+  baseValueScaleConstant_in?: Float[] | Float;
+  baseValueScaleConstant_not_in?: Float[] | Float;
+  baseValueScaleConstant_lt?: Float;
+  baseValueScaleConstant_lte?: Float;
+  baseValueScaleConstant_gt?: Float;
+  baseValueScaleConstant_gte?: Float;
+  AND?: EffectRestrictedWhereInput[] | EffectRestrictedWhereInput;
+}
+
+export interface AttributeRestrictedWhereInput {
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  value?: Float;
+  value_not?: Float;
+  value_in?: Float[] | Float;
+  value_not_in?: Float[] | Float;
+  value_lt?: Float;
+  value_lte?: Float;
+  value_gt?: Float;
+  value_gte?: Float;
+  AND?: AttributeRestrictedWhereInput[] | AttributeRestrictedWhereInput;
+}
+
+export interface NameByBrandWhereInput {
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  brand?: BrandWhereInput;
+  AND?: NameByBrandWhereInput[] | NameByBrandWhereInput;
+}
+
+export interface NameByBrandRestrictedWhereInput {
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  AND?: NameByBrandRestrictedWhereInput[] | NameByBrandRestrictedWhereInput;
+}
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
@@ -139,6 +548,377 @@ export interface UserWhereInput {
   AND?: UserWhereInput[] | UserWhereInput;
 }
 
+export type WeaponBaseWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type WeaponPartWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface BrandCreateInput {
+  name: String;
+  weapons?: WeaponBaseCreateManyWithoutBrandInput;
+  weaponParts?: WeaponPartCreateManyWithoutBrandInput;
+}
+
+export interface WeaponBaseCreateManyWithoutBrandInput {
+  create?:
+    | WeaponBaseCreateWithoutBrandInput[]
+    | WeaponBaseCreateWithoutBrandInput;
+  connect?: WeaponBaseWhereUniqueInput[] | WeaponBaseWhereUniqueInput;
+}
+
+export interface WeaponBaseCreateWithoutBrandInput {
+  rarity?: Rarity;
+  type?: WeaponType;
+  attributes?: AttributeCreateManyInput;
+}
+
+export interface AttributeCreateManyInput {
+  create?: AttributeCreateInput[] | AttributeCreateInput;
+}
+
+export interface AttributeCreateInput {
+  name: String;
+  value?: Float;
+}
+
+export interface WeaponPartCreateManyWithoutBrandInput {
+  create?:
+    | WeaponPartCreateWithoutBrandInput[]
+    | WeaponPartCreateWithoutBrandInput;
+  connect?: WeaponPartWhereUniqueInput[] | WeaponPartWhereUniqueInput;
+}
+
+export interface WeaponPartCreateWithoutBrandInput {
+  effects?: EffectCreateManyInput;
+  prefixes?: NameByBrandCreateManyInput;
+  titles?: NameByBrandCreateManyInput;
+  weaponType?: WeaponType;
+  partType?: WeaponPartType;
+}
+
+export interface EffectCreateManyInput {
+  create?: EffectCreateInput[] | EffectCreateInput;
+}
+
+export interface EffectCreateInput {
+  AttributeToModify?: AttributeCreateOneInput;
+  modifierType?: ModifierType;
+  baseValueConstant?: Float;
+  baseValueAttribute?: AttributeCreateOneInput;
+  baseValueScaleConstant?: Float;
+}
+
+export interface AttributeCreateOneInput {
+  create?: AttributeCreateInput;
+}
+
+export interface NameByBrandCreateManyInput {
+  create?: NameByBrandCreateInput[] | NameByBrandCreateInput;
+}
+
+export interface NameByBrandCreateInput {
+  name: String;
+  brand?: BrandCreateOneInput;
+}
+
+export interface BrandCreateOneInput {
+  create?: BrandCreateInput;
+  connect?: BrandWhereUniqueInput;
+}
+
+export interface BrandUpdateInput {
+  name?: String;
+  weapons?: WeaponBaseUpdateManyWithoutBrandInput;
+  weaponParts?: WeaponPartUpdateManyWithoutBrandInput;
+}
+
+export interface WeaponBaseUpdateManyWithoutBrandInput {
+  create?:
+    | WeaponBaseCreateWithoutBrandInput[]
+    | WeaponBaseCreateWithoutBrandInput;
+  delete?: WeaponBaseWhereUniqueInput[] | WeaponBaseWhereUniqueInput;
+  connect?: WeaponBaseWhereUniqueInput[] | WeaponBaseWhereUniqueInput;
+  set?: WeaponBaseWhereUniqueInput[] | WeaponBaseWhereUniqueInput;
+  disconnect?: WeaponBaseWhereUniqueInput[] | WeaponBaseWhereUniqueInput;
+  update?:
+    | WeaponBaseUpdateWithWhereUniqueWithoutBrandInput[]
+    | WeaponBaseUpdateWithWhereUniqueWithoutBrandInput;
+  upsert?:
+    | WeaponBaseUpsertWithWhereUniqueWithoutBrandInput[]
+    | WeaponBaseUpsertWithWhereUniqueWithoutBrandInput;
+  deleteMany?: WeaponBaseScalarWhereInput[] | WeaponBaseScalarWhereInput;
+  updateMany?:
+    | WeaponBaseUpdateManyWithWhereNestedInput[]
+    | WeaponBaseUpdateManyWithWhereNestedInput;
+}
+
+export interface WeaponBaseUpdateWithWhereUniqueWithoutBrandInput {
+  where: WeaponBaseWhereUniqueInput;
+  data: WeaponBaseUpdateWithoutBrandDataInput;
+}
+
+export interface WeaponBaseUpdateWithoutBrandDataInput {
+  rarity?: Rarity;
+  type?: WeaponType;
+  attributes?: AttributeUpdateManyInput;
+}
+
+export interface AttributeUpdateManyInput {
+  create?: AttributeCreateInput[] | AttributeCreateInput;
+  deleteMany?: AttributeScalarWhereInput[] | AttributeScalarWhereInput;
+  updateMany?:
+    | AttributeUpdateManyWithWhereNestedInput[]
+    | AttributeUpdateManyWithWhereNestedInput;
+}
+
+export interface AttributeScalarWhereInput {
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  value?: Float;
+  value_not?: Float;
+  value_in?: Float[] | Float;
+  value_not_in?: Float[] | Float;
+  value_lt?: Float;
+  value_lte?: Float;
+  value_gt?: Float;
+  value_gte?: Float;
+  AND?: AttributeScalarWhereInput[] | AttributeScalarWhereInput;
+  OR?: AttributeScalarWhereInput[] | AttributeScalarWhereInput;
+  NOT?: AttributeScalarWhereInput[] | AttributeScalarWhereInput;
+}
+
+export interface AttributeUpdateManyWithWhereNestedInput {
+  where: AttributeScalarWhereInput;
+  data: AttributeUpdateManyDataInput;
+}
+
+export interface AttributeUpdateManyDataInput {
+  name?: String;
+  value?: Float;
+}
+
+export interface WeaponBaseUpsertWithWhereUniqueWithoutBrandInput {
+  where: WeaponBaseWhereUniqueInput;
+  update: WeaponBaseUpdateWithoutBrandDataInput;
+  create: WeaponBaseCreateWithoutBrandInput;
+}
+
+export interface WeaponBaseScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  rarity?: Rarity;
+  rarity_not?: Rarity;
+  rarity_in?: Rarity[] | Rarity;
+  rarity_not_in?: Rarity[] | Rarity;
+  type?: WeaponType;
+  type_not?: WeaponType;
+  type_in?: WeaponType[] | WeaponType;
+  type_not_in?: WeaponType[] | WeaponType;
+  AND?: WeaponBaseScalarWhereInput[] | WeaponBaseScalarWhereInput;
+  OR?: WeaponBaseScalarWhereInput[] | WeaponBaseScalarWhereInput;
+  NOT?: WeaponBaseScalarWhereInput[] | WeaponBaseScalarWhereInput;
+}
+
+export interface WeaponBaseUpdateManyWithWhereNestedInput {
+  where: WeaponBaseScalarWhereInput;
+  data: WeaponBaseUpdateManyDataInput;
+}
+
+export interface WeaponBaseUpdateManyDataInput {
+  rarity?: Rarity;
+  type?: WeaponType;
+}
+
+export interface WeaponPartUpdateManyWithoutBrandInput {
+  create?:
+    | WeaponPartCreateWithoutBrandInput[]
+    | WeaponPartCreateWithoutBrandInput;
+  delete?: WeaponPartWhereUniqueInput[] | WeaponPartWhereUniqueInput;
+  connect?: WeaponPartWhereUniqueInput[] | WeaponPartWhereUniqueInput;
+  set?: WeaponPartWhereUniqueInput[] | WeaponPartWhereUniqueInput;
+  disconnect?: WeaponPartWhereUniqueInput[] | WeaponPartWhereUniqueInput;
+  update?:
+    | WeaponPartUpdateWithWhereUniqueWithoutBrandInput[]
+    | WeaponPartUpdateWithWhereUniqueWithoutBrandInput;
+  upsert?:
+    | WeaponPartUpsertWithWhereUniqueWithoutBrandInput[]
+    | WeaponPartUpsertWithWhereUniqueWithoutBrandInput;
+  deleteMany?: WeaponPartScalarWhereInput[] | WeaponPartScalarWhereInput;
+  updateMany?:
+    | WeaponPartUpdateManyWithWhereNestedInput[]
+    | WeaponPartUpdateManyWithWhereNestedInput;
+}
+
+export interface WeaponPartUpdateWithWhereUniqueWithoutBrandInput {
+  where: WeaponPartWhereUniqueInput;
+  data: WeaponPartUpdateWithoutBrandDataInput;
+}
+
+export interface WeaponPartUpdateWithoutBrandDataInput {
+  effects?: EffectUpdateManyInput;
+  prefixes?: NameByBrandUpdateManyInput;
+  titles?: NameByBrandUpdateManyInput;
+  weaponType?: WeaponType;
+  partType?: WeaponPartType;
+}
+
+export interface EffectUpdateManyInput {
+  create?: EffectCreateInput[] | EffectCreateInput;
+  deleteMany?: EffectScalarWhereInput[] | EffectScalarWhereInput;
+  updateMany?:
+    | EffectUpdateManyWithWhereNestedInput[]
+    | EffectUpdateManyWithWhereNestedInput;
+}
+
+export interface EffectScalarWhereInput {
+  modifierType?: ModifierType;
+  modifierType_not?: ModifierType;
+  modifierType_in?: ModifierType[] | ModifierType;
+  modifierType_not_in?: ModifierType[] | ModifierType;
+  baseValueConstant?: Float;
+  baseValueConstant_not?: Float;
+  baseValueConstant_in?: Float[] | Float;
+  baseValueConstant_not_in?: Float[] | Float;
+  baseValueConstant_lt?: Float;
+  baseValueConstant_lte?: Float;
+  baseValueConstant_gt?: Float;
+  baseValueConstant_gte?: Float;
+  baseValueScaleConstant?: Float;
+  baseValueScaleConstant_not?: Float;
+  baseValueScaleConstant_in?: Float[] | Float;
+  baseValueScaleConstant_not_in?: Float[] | Float;
+  baseValueScaleConstant_lt?: Float;
+  baseValueScaleConstant_lte?: Float;
+  baseValueScaleConstant_gt?: Float;
+  baseValueScaleConstant_gte?: Float;
+  AND?: EffectScalarWhereInput[] | EffectScalarWhereInput;
+  OR?: EffectScalarWhereInput[] | EffectScalarWhereInput;
+  NOT?: EffectScalarWhereInput[] | EffectScalarWhereInput;
+}
+
+export interface EffectUpdateManyWithWhereNestedInput {
+  where: EffectScalarWhereInput;
+  data: EffectUpdateManyDataInput;
+}
+
+export interface EffectUpdateManyDataInput {
+  modifierType?: ModifierType;
+  baseValueConstant?: Float;
+  baseValueScaleConstant?: Float;
+}
+
+export interface NameByBrandUpdateManyInput {
+  create?: NameByBrandCreateInput[] | NameByBrandCreateInput;
+  deleteMany?: NameByBrandScalarWhereInput[] | NameByBrandScalarWhereInput;
+  updateMany?:
+    | NameByBrandUpdateManyWithWhereNestedInput[]
+    | NameByBrandUpdateManyWithWhereNestedInput;
+}
+
+export interface NameByBrandScalarWhereInput {
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  AND?: NameByBrandScalarWhereInput[] | NameByBrandScalarWhereInput;
+  OR?: NameByBrandScalarWhereInput[] | NameByBrandScalarWhereInput;
+  NOT?: NameByBrandScalarWhereInput[] | NameByBrandScalarWhereInput;
+}
+
+export interface NameByBrandUpdateManyWithWhereNestedInput {
+  where: NameByBrandScalarWhereInput;
+  data: NameByBrandUpdateManyDataInput;
+}
+
+export interface NameByBrandUpdateManyDataInput {
+  name?: String;
+}
+
+export interface WeaponPartUpsertWithWhereUniqueWithoutBrandInput {
+  where: WeaponPartWhereUniqueInput;
+  update: WeaponPartUpdateWithoutBrandDataInput;
+  create: WeaponPartCreateWithoutBrandInput;
+}
+
+export interface WeaponPartScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  weaponType?: WeaponType;
+  weaponType_not?: WeaponType;
+  weaponType_in?: WeaponType[] | WeaponType;
+  weaponType_not_in?: WeaponType[] | WeaponType;
+  partType?: WeaponPartType;
+  partType_not?: WeaponPartType;
+  partType_in?: WeaponPartType[] | WeaponPartType;
+  partType_not_in?: WeaponPartType[] | WeaponPartType;
+  AND?: WeaponPartScalarWhereInput[] | WeaponPartScalarWhereInput;
+  OR?: WeaponPartScalarWhereInput[] | WeaponPartScalarWhereInput;
+  NOT?: WeaponPartScalarWhereInput[] | WeaponPartScalarWhereInput;
+}
+
+export interface WeaponPartUpdateManyWithWhereNestedInput {
+  where: WeaponPartScalarWhereInput;
+  data: WeaponPartUpdateManyDataInput;
+}
+
+export interface WeaponPartUpdateManyDataInput {
+  weaponType?: WeaponType;
+  partType?: WeaponPartType;
+}
+
+export interface BrandUpdateManyMutationInput {
+  name?: String;
+}
+
 export interface UserCreateInput {
   name: String;
 }
@@ -151,6 +931,142 @@ export interface UserUpdateManyMutationInput {
   name?: String;
 }
 
+export interface WeaponBaseCreateInput {
+  rarity?: Rarity;
+  brand?: BrandCreateOneWithoutWeaponsInput;
+  type?: WeaponType;
+  attributes?: AttributeCreateManyInput;
+}
+
+export interface BrandCreateOneWithoutWeaponsInput {
+  create?: BrandCreateWithoutWeaponsInput;
+  connect?: BrandWhereUniqueInput;
+}
+
+export interface BrandCreateWithoutWeaponsInput {
+  name: String;
+  weaponParts?: WeaponPartCreateManyWithoutBrandInput;
+}
+
+export interface WeaponBaseUpdateInput {
+  rarity?: Rarity;
+  brand?: BrandUpdateOneWithoutWeaponsInput;
+  type?: WeaponType;
+  attributes?: AttributeUpdateManyInput;
+}
+
+export interface BrandUpdateOneWithoutWeaponsInput {
+  create?: BrandCreateWithoutWeaponsInput;
+  update?: BrandUpdateWithoutWeaponsDataInput;
+  upsert?: BrandUpsertWithoutWeaponsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: BrandWhereUniqueInput;
+}
+
+export interface BrandUpdateWithoutWeaponsDataInput {
+  name?: String;
+  weaponParts?: WeaponPartUpdateManyWithoutBrandInput;
+}
+
+export interface BrandUpsertWithoutWeaponsInput {
+  update: BrandUpdateWithoutWeaponsDataInput;
+  create: BrandCreateWithoutWeaponsInput;
+}
+
+export interface WeaponBaseUpdateManyMutationInput {
+  rarity?: Rarity;
+  type?: WeaponType;
+}
+
+export interface WeaponPartCreateInput {
+  effects?: EffectCreateManyInput;
+  prefixes?: NameByBrandCreateManyInput;
+  titles?: NameByBrandCreateManyInput;
+  brand?: BrandCreateOneWithoutWeaponPartsInput;
+  weaponType?: WeaponType;
+  partType?: WeaponPartType;
+}
+
+export interface BrandCreateOneWithoutWeaponPartsInput {
+  create?: BrandCreateWithoutWeaponPartsInput;
+  connect?: BrandWhereUniqueInput;
+}
+
+export interface BrandCreateWithoutWeaponPartsInput {
+  name: String;
+  weapons?: WeaponBaseCreateManyWithoutBrandInput;
+}
+
+export interface WeaponPartUpdateInput {
+  effects?: EffectUpdateManyInput;
+  prefixes?: NameByBrandUpdateManyInput;
+  titles?: NameByBrandUpdateManyInput;
+  brand?: BrandUpdateOneWithoutWeaponPartsInput;
+  weaponType?: WeaponType;
+  partType?: WeaponPartType;
+}
+
+export interface BrandUpdateOneWithoutWeaponPartsInput {
+  create?: BrandCreateWithoutWeaponPartsInput;
+  update?: BrandUpdateWithoutWeaponPartsDataInput;
+  upsert?: BrandUpsertWithoutWeaponPartsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: BrandWhereUniqueInput;
+}
+
+export interface BrandUpdateWithoutWeaponPartsDataInput {
+  name?: String;
+  weapons?: WeaponBaseUpdateManyWithoutBrandInput;
+}
+
+export interface BrandUpsertWithoutWeaponPartsInput {
+  update: BrandUpdateWithoutWeaponPartsDataInput;
+  create: BrandCreateWithoutWeaponPartsInput;
+}
+
+export interface WeaponPartUpdateManyMutationInput {
+  weaponType?: WeaponType;
+  partType?: WeaponPartType;
+}
+
+export interface AttributeSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: AttributeWhereInput;
+  AND?: AttributeSubscriptionWhereInput[] | AttributeSubscriptionWhereInput;
+}
+
+export interface BrandSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: BrandWhereInput;
+  AND?: BrandSubscriptionWhereInput[] | BrandSubscriptionWhereInput;
+}
+
+export interface EffectSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: EffectWhereInput;
+  AND?: EffectSubscriptionWhereInput[] | EffectSubscriptionWhereInput;
+}
+
+export interface NameByBrandSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: NameByBrandWhereInput;
+  AND?: NameByBrandSubscriptionWhereInput[] | NameByBrandSubscriptionWhereInput;
+}
+
 export interface UserSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
@@ -160,8 +1076,271 @@ export interface UserSubscriptionWhereInput {
   AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
 }
 
+export interface WeaponBaseSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: WeaponBaseWhereInput;
+  AND?: WeaponBaseSubscriptionWhereInput[] | WeaponBaseSubscriptionWhereInput;
+}
+
+export interface WeaponPartSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: WeaponPartWhereInput;
+  AND?: WeaponPartSubscriptionWhereInput[] | WeaponPartSubscriptionWhereInput;
+}
+
 export interface NodeNode {
   id: ID_Output;
+}
+
+export interface Brand {
+  id: ID_Output;
+  name: String;
+}
+
+export interface BrandPromise extends Promise<Brand>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  weapons: <T = FragmentableArray<WeaponBase>>(args?: {
+    where?: WeaponBaseWhereInput;
+    orderBy?: WeaponBaseOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  weaponParts: <T = FragmentableArray<WeaponPart>>(args?: {
+    where?: WeaponPartWhereInput;
+    orderBy?: WeaponPartOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface BrandSubscription
+  extends Promise<AsyncIterator<Brand>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  weapons: <T = Promise<AsyncIterator<WeaponBaseSubscription>>>(args?: {
+    where?: WeaponBaseWhereInput;
+    orderBy?: WeaponBaseOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  weaponParts: <T = Promise<AsyncIterator<WeaponPartSubscription>>>(args?: {
+    where?: WeaponPartWhereInput;
+    orderBy?: WeaponPartOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface WeaponBase {
+  id: ID_Output;
+  rarity?: Rarity;
+  type?: WeaponType;
+  attributes?: <T = FragmentableArray<Attribute>>() => T;
+}
+
+export interface WeaponBasePromise extends Promise<WeaponBase>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  rarity: () => Promise<Rarity>;
+  brand: <T = BrandPromise>() => T;
+  type: () => Promise<WeaponType>;
+  attributes: <T = FragmentableArray<Attribute>>() => T;
+}
+
+export interface WeaponBaseSubscription
+  extends Promise<AsyncIterator<WeaponBase>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  rarity: () => Promise<AsyncIterator<Rarity>>;
+  brand: <T = BrandSubscription>() => T;
+  type: () => Promise<AsyncIterator<WeaponType>>;
+  attributes: <T = Promise<AsyncIterator<AttributeSubscription>>>() => T;
+}
+
+export interface Attribute {
+  name: String;
+  value?: Float;
+}
+
+export interface AttributePromise extends Promise<Attribute>, Fragmentable {
+  name: () => Promise<String>;
+  value: () => Promise<Float>;
+}
+
+export interface AttributeSubscription
+  extends Promise<AsyncIterator<Attribute>>,
+    Fragmentable {
+  name: () => Promise<AsyncIterator<String>>;
+  value: () => Promise<AsyncIterator<Float>>;
+}
+
+export interface WeaponPart {
+  id: ID_Output;
+  effects?: <T = FragmentableArray<Effect>>() => T;
+  prefixes?: <T = FragmentableArray<NameByBrand>>() => T;
+  titles?: <T = FragmentableArray<NameByBrand>>() => T;
+  weaponType?: WeaponType;
+  partType?: WeaponPartType;
+}
+
+export interface WeaponPartPromise extends Promise<WeaponPart>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  effects: <T = FragmentableArray<Effect>>() => T;
+  prefixes: <T = FragmentableArray<NameByBrand>>() => T;
+  titles: <T = FragmentableArray<NameByBrand>>() => T;
+  brand: <T = BrandPromise>() => T;
+  weaponType: () => Promise<WeaponType>;
+  partType: () => Promise<WeaponPartType>;
+}
+
+export interface WeaponPartSubscription
+  extends Promise<AsyncIterator<WeaponPart>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  effects: <T = Promise<AsyncIterator<EffectSubscription>>>() => T;
+  prefixes: <T = Promise<AsyncIterator<NameByBrandSubscription>>>() => T;
+  titles: <T = Promise<AsyncIterator<NameByBrandSubscription>>>() => T;
+  brand: <T = BrandSubscription>() => T;
+  weaponType: () => Promise<AsyncIterator<WeaponType>>;
+  partType: () => Promise<AsyncIterator<WeaponPartType>>;
+}
+
+export interface Effect {
+  AttributeToModify?: Attribute | null;
+  modifierType?: ModifierType;
+  baseValueConstant?: Float;
+  baseValueAttribute?: Attribute | null;
+  baseValueScaleConstant?: Float;
+}
+
+export interface EffectPromise extends Promise<Effect>, Fragmentable {
+  AttributeToModify: <T = AttributePromise>() => T;
+  modifierType: () => Promise<ModifierType>;
+  baseValueConstant: () => Promise<Float>;
+  baseValueAttribute: <T = AttributePromise>() => T;
+  baseValueScaleConstant: () => Promise<Float>;
+}
+
+export interface EffectSubscription
+  extends Promise<AsyncIterator<Effect>>,
+    Fragmentable {
+  AttributeToModify: <T = AttributeSubscription>() => T;
+  modifierType: () => Promise<AsyncIterator<ModifierType>>;
+  baseValueConstant: () => Promise<AsyncIterator<Float>>;
+  baseValueAttribute: <T = AttributeSubscription>() => T;
+  baseValueScaleConstant: () => Promise<AsyncIterator<Float>>;
+}
+
+export interface NameByBrand {
+  name: String;
+}
+
+export interface NameByBrandPromise extends Promise<NameByBrand>, Fragmentable {
+  name: () => Promise<String>;
+  brand: <T = BrandPromise>() => T;
+}
+
+export interface NameByBrandSubscription
+  extends Promise<AsyncIterator<NameByBrand>>,
+    Fragmentable {
+  name: () => Promise<AsyncIterator<String>>;
+  brand: <T = BrandSubscription>() => T;
+}
+
+export interface BrandConnection {
+  pageInfo: PageInfo;
+  edges: BrandEdge[];
+}
+
+export interface BrandConnectionPromise
+  extends Promise<BrandConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<BrandEdge>>() => T;
+  aggregate: <T = AggregateBrandPromise>() => T;
+}
+
+export interface BrandConnectionSubscription
+  extends Promise<AsyncIterator<BrandConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<BrandEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateBrandSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BrandEdge {
+  node: Brand;
+  cursor: String;
+}
+
+export interface BrandEdgePromise extends Promise<BrandEdge>, Fragmentable {
+  node: <T = BrandPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface BrandEdgeSubscription
+  extends Promise<AsyncIterator<BrandEdge>>,
+    Fragmentable {
+  node: <T = BrandSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateBrand {
+  count: Int;
+}
+
+export interface AggregateBrandPromise
+  extends Promise<AggregateBrand>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateBrandSubscription
+  extends Promise<AsyncIterator<AggregateBrand>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface User {
@@ -202,29 +1381,6 @@ export interface UserConnectionSubscription
   aggregate: <T = AggregateUserSubscription>() => T;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
 export interface UserEdge {
   node: User;
   cursor: String;
@@ -258,6 +1414,118 @@ export interface AggregateUserSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface WeaponBaseConnection {
+  pageInfo: PageInfo;
+  edges: WeaponBaseEdge[];
+}
+
+export interface WeaponBaseConnectionPromise
+  extends Promise<WeaponBaseConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<WeaponBaseEdge>>() => T;
+  aggregate: <T = AggregateWeaponBasePromise>() => T;
+}
+
+export interface WeaponBaseConnectionSubscription
+  extends Promise<AsyncIterator<WeaponBaseConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<WeaponBaseEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateWeaponBaseSubscription>() => T;
+}
+
+export interface WeaponBaseEdge {
+  node: WeaponBase;
+  cursor: String;
+}
+
+export interface WeaponBaseEdgePromise
+  extends Promise<WeaponBaseEdge>,
+    Fragmentable {
+  node: <T = WeaponBasePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface WeaponBaseEdgeSubscription
+  extends Promise<AsyncIterator<WeaponBaseEdge>>,
+    Fragmentable {
+  node: <T = WeaponBaseSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateWeaponBase {
+  count: Int;
+}
+
+export interface AggregateWeaponBasePromise
+  extends Promise<AggregateWeaponBase>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateWeaponBaseSubscription
+  extends Promise<AsyncIterator<AggregateWeaponBase>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface WeaponPartConnection {
+  pageInfo: PageInfo;
+  edges: WeaponPartEdge[];
+}
+
+export interface WeaponPartConnectionPromise
+  extends Promise<WeaponPartConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<WeaponPartEdge>>() => T;
+  aggregate: <T = AggregateWeaponPartPromise>() => T;
+}
+
+export interface WeaponPartConnectionSubscription
+  extends Promise<AsyncIterator<WeaponPartConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<WeaponPartEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateWeaponPartSubscription>() => T;
+}
+
+export interface WeaponPartEdge {
+  node: WeaponPart;
+  cursor: String;
+}
+
+export interface WeaponPartEdgePromise
+  extends Promise<WeaponPartEdge>,
+    Fragmentable {
+  node: <T = WeaponPartPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface WeaponPartEdgeSubscription
+  extends Promise<AsyncIterator<WeaponPartEdge>>,
+    Fragmentable {
+  node: <T = WeaponPartSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateWeaponPart {
+  count: Int;
+}
+
+export interface AggregateWeaponPartPromise
+  extends Promise<AggregateWeaponPart>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateWeaponPartSubscription
+  extends Promise<AsyncIterator<AggregateWeaponPart>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface BatchPayload {
   count: Long;
 }
@@ -272,6 +1540,182 @@ export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface AttributeSubscriptionPayload {
+  mutation: MutationType;
+  node: Attribute;
+  updatedFields: String[];
+  previousValues: AttributePreviousValues;
+}
+
+export interface AttributeSubscriptionPayloadPromise
+  extends Promise<AttributeSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = AttributePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AttributePreviousValuesPromise>() => T;
+}
+
+export interface AttributeSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AttributeSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AttributeSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AttributePreviousValuesSubscription>() => T;
+}
+
+export interface AttributePreviousValues {
+  name: String;
+  value?: Float;
+}
+
+export interface AttributePreviousValuesPromise
+  extends Promise<AttributePreviousValues>,
+    Fragmentable {
+  name: () => Promise<String>;
+  value: () => Promise<Float>;
+}
+
+export interface AttributePreviousValuesSubscription
+  extends Promise<AsyncIterator<AttributePreviousValues>>,
+    Fragmentable {
+  name: () => Promise<AsyncIterator<String>>;
+  value: () => Promise<AsyncIterator<Float>>;
+}
+
+export interface BrandSubscriptionPayload {
+  mutation: MutationType;
+  node: Brand;
+  updatedFields: String[];
+  previousValues: BrandPreviousValues;
+}
+
+export interface BrandSubscriptionPayloadPromise
+  extends Promise<BrandSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = BrandPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = BrandPreviousValuesPromise>() => T;
+}
+
+export interface BrandSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<BrandSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = BrandSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = BrandPreviousValuesSubscription>() => T;
+}
+
+export interface BrandPreviousValues {
+  id: ID_Output;
+  name: String;
+}
+
+export interface BrandPreviousValuesPromise
+  extends Promise<BrandPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface BrandPreviousValuesSubscription
+  extends Promise<AsyncIterator<BrandPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface EffectSubscriptionPayload {
+  mutation: MutationType;
+  node: Effect;
+  updatedFields: String[];
+  previousValues: EffectPreviousValues;
+}
+
+export interface EffectSubscriptionPayloadPromise
+  extends Promise<EffectSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = EffectPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = EffectPreviousValuesPromise>() => T;
+}
+
+export interface EffectSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<EffectSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = EffectSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = EffectPreviousValuesSubscription>() => T;
+}
+
+export interface EffectPreviousValues {
+  modifierType?: ModifierType;
+  baseValueConstant?: Float;
+  baseValueScaleConstant?: Float;
+}
+
+export interface EffectPreviousValuesPromise
+  extends Promise<EffectPreviousValues>,
+    Fragmentable {
+  modifierType: () => Promise<ModifierType>;
+  baseValueConstant: () => Promise<Float>;
+  baseValueScaleConstant: () => Promise<Float>;
+}
+
+export interface EffectPreviousValuesSubscription
+  extends Promise<AsyncIterator<EffectPreviousValues>>,
+    Fragmentable {
+  modifierType: () => Promise<AsyncIterator<ModifierType>>;
+  baseValueConstant: () => Promise<AsyncIterator<Float>>;
+  baseValueScaleConstant: () => Promise<AsyncIterator<Float>>;
+}
+
+export interface NameByBrandSubscriptionPayload {
+  mutation: MutationType;
+  node: NameByBrand;
+  updatedFields: String[];
+  previousValues: NameByBrandPreviousValues;
+}
+
+export interface NameByBrandSubscriptionPayloadPromise
+  extends Promise<NameByBrandSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = NameByBrandPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = NameByBrandPreviousValuesPromise>() => T;
+}
+
+export interface NameByBrandSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<NameByBrandSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = NameByBrandSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = NameByBrandPreviousValuesSubscription>() => T;
+}
+
+export interface NameByBrandPreviousValues {
+  name: String;
+}
+
+export interface NameByBrandPreviousValuesPromise
+  extends Promise<NameByBrandPreviousValues>,
+    Fragmentable {
+  name: () => Promise<String>;
+}
+
+export interface NameByBrandPreviousValuesSubscription
+  extends Promise<AsyncIterator<NameByBrandPreviousValues>>,
+    Fragmentable {
+  name: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -318,6 +1762,100 @@ export interface UserPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
 }
 
+export interface WeaponBaseSubscriptionPayload {
+  mutation: MutationType;
+  node: WeaponBase;
+  updatedFields: String[];
+  previousValues: WeaponBasePreviousValues;
+}
+
+export interface WeaponBaseSubscriptionPayloadPromise
+  extends Promise<WeaponBaseSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = WeaponBasePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = WeaponBasePreviousValuesPromise>() => T;
+}
+
+export interface WeaponBaseSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<WeaponBaseSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = WeaponBaseSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = WeaponBasePreviousValuesSubscription>() => T;
+}
+
+export interface WeaponBasePreviousValues {
+  id: ID_Output;
+  rarity?: Rarity;
+  type?: WeaponType;
+}
+
+export interface WeaponBasePreviousValuesPromise
+  extends Promise<WeaponBasePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  rarity: () => Promise<Rarity>;
+  type: () => Promise<WeaponType>;
+}
+
+export interface WeaponBasePreviousValuesSubscription
+  extends Promise<AsyncIterator<WeaponBasePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  rarity: () => Promise<AsyncIterator<Rarity>>;
+  type: () => Promise<AsyncIterator<WeaponType>>;
+}
+
+export interface WeaponPartSubscriptionPayload {
+  mutation: MutationType;
+  node: WeaponPart;
+  updatedFields: String[];
+  previousValues: WeaponPartPreviousValues;
+}
+
+export interface WeaponPartSubscriptionPayloadPromise
+  extends Promise<WeaponPartSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = WeaponPartPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = WeaponPartPreviousValuesPromise>() => T;
+}
+
+export interface WeaponPartSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<WeaponPartSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = WeaponPartSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = WeaponPartPreviousValuesSubscription>() => T;
+}
+
+export interface WeaponPartPreviousValues {
+  id: ID_Output;
+  weaponType?: WeaponType;
+  partType?: WeaponPartType;
+}
+
+export interface WeaponPartPreviousValuesPromise
+  extends Promise<WeaponPartPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  weaponType: () => Promise<WeaponType>;
+  partType: () => Promise<WeaponPartType>;
+}
+
+export interface WeaponPartPreviousValuesSubscription
+  extends Promise<AsyncIterator<WeaponPartPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  weaponType: () => Promise<AsyncIterator<WeaponType>>;
+  partType: () => Promise<AsyncIterator<WeaponPartType>>;
+}
+
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
@@ -328,6 +1866,11 @@ export type ID_Output = string;
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
 export type String = string;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). 
+*/
+export type Float = number;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
@@ -347,7 +1890,47 @@ export type Long = string;
 
 export const models: Model[] = [
   {
+    name: "Attribute",
+    embedded: true
+  },
+  {
+    name: "Brand",
+    embedded: false
+  },
+  {
+    name: "Effect",
+    embedded: true
+  },
+  {
+    name: "ModifierType",
+    embedded: false
+  },
+  {
+    name: "NameByBrand",
+    embedded: true
+  },
+  {
+    name: "Rarity",
+    embedded: false
+  },
+  {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "WeaponBase",
+    embedded: false
+  },
+  {
+    name: "WeaponPart",
+    embedded: false
+  },
+  {
+    name: "WeaponPartType",
+    embedded: false
+  },
+  {
+    name: "WeaponType",
     embedded: false
   }
 ];

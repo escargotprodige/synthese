@@ -7,19 +7,23 @@ enum Rarity {
   COMMON
   UNCOMMON
   RARE
+  VERY_RARE
+  LEGENDARY
 }
 
 type Brand {
   id: ID! @id
   name: String!
-  weapons: [Weapon]
-  weaponParts: [WeaponPart]
+  weapons: [WeaponBase] @relation(link: INLINE)
+  weaponParts: [WeaponPart] @relation(link: INLINE)
 }
 
 enum WeaponType {
   PISTOL
   SHOTGUN
   ASSAULT_RIFLE
+  SNIPER
+  ROCKET_LAUNCHER
   SMG
 }
 
@@ -28,6 +32,7 @@ enum WeaponPartType {
   BARREL
   ACCESSORY
   SIGHT
+  GRIP
   STOCK
 }
 
@@ -52,8 +57,8 @@ type WeaponBase {
 type WeaponPart {
   id: ID! @id
   effects: [Effect!]
-  prefixes: [NameByBrand!]
-  titles: [NameByBrand!]
+  prefixes: [NameByBrand!] @relation(name: "Prefixes")
+  titles: [NameByBrand!] @relation(name: "Titles")
   brand: Brand
   weaponType: WeaponType
   partType: WeaponPartType
@@ -65,9 +70,9 @@ type NameByBrand @embedded {
 }
 
 type Effect @embedded {
-  statToModify: String
+  AttributeToModify: Attribute @relation(name: "AttributeToModify")
   modifierType: ModifierType
   baseValueConstant: Float
-  baseValueAttribute: String
+  baseValueAttribute: Attribute @relation(name: "BaseValueAttribute")
   baseValueScaleConstant: Float
 }
