@@ -14,8 +14,8 @@ enum Rarity {
 type Brand {
   id: ID! @id
   name: String!
-  weapons: [WeaponBase] @relation(link: INLINE)
-  weaponParts: [WeaponPart] @relation(link: INLINE)
+  weapons: [WeaponBase] 
+  weaponParts: [WeaponPart]
 }
 
 enum WeaponType {
@@ -49,7 +49,7 @@ type Attribute @embedded {
 type WeaponBase {
   id: ID! @id
   rarity: Rarity
-  brand: Brand
+  brand: Brand @relation(link: INLINE)
   type: WeaponType
   attributes: [Attribute!]
 }
@@ -59,7 +59,7 @@ type WeaponPart {
   effects: [Effect!]
   prefixes: [NameByBrand!] @relation(name: "Prefixes")
   titles: [NameByBrand!] @relation(name: "Titles")
-  brand: Brand
+  brand: Brand @relation(link: INLINE)
   weaponType: WeaponType
   partType: WeaponPartType
 }
