@@ -12,7 +12,7 @@ export default {
     NameByBrand: [],
     Effect: []
   },
-  clientPath: '/home/escargotprodige/code/synthese/src/generated/prisma-client',
+  clientPath: 'D:\ecole\synthese\src\generated\prisma-client',
   schema: {
   "__schema": {
     "queryType": {

@@ -11,16 +11,6 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  AttributeCreateInput: { // input type
-    name: string; // String!
-    value?: number | null; // Float
-  }
-  AttributeCreateManyInput: { // input type
-    create?: NexusGenInputs['AttributeCreateInput'][] | null; // [AttributeCreateInput!]
-  }
-  AttributeCreateOneInput: { // input type
-    create?: NexusGenInputs['AttributeCreateInput'] | null; // AttributeCreateInput
-  }
   AttributeRestrictedWhereInput: { // input type
     AND?: NexusGenInputs['AttributeRestrictedWhereInput'][] | null; // [AttributeRestrictedWhereInput!]
     name?: string | null; // String
@@ -46,46 +36,6 @@ export interface NexusGenInputs {
     value_not?: number | null; // Float
     value_not_in?: number[] | null; // [Float!]
   }
-  AttributeScalarWhereInput: { // input type
-    AND?: NexusGenInputs['AttributeScalarWhereInput'][] | null; // [AttributeScalarWhereInput!]
-    name?: string | null; // String
-    name_contains?: string | null; // String
-    name_ends_with?: string | null; // String
-    name_gt?: string | null; // String
-    name_gte?: string | null; // String
-    name_in?: string[] | null; // [String!]
-    name_lt?: string | null; // String
-    name_lte?: string | null; // String
-    name_not?: string | null; // String
-    name_not_contains?: string | null; // String
-    name_not_ends_with?: string | null; // String
-    name_not_in?: string[] | null; // [String!]
-    name_not_starts_with?: string | null; // String
-    name_starts_with?: string | null; // String
-    NOT?: NexusGenInputs['AttributeScalarWhereInput'][] | null; // [AttributeScalarWhereInput!]
-    OR?: NexusGenInputs['AttributeScalarWhereInput'][] | null; // [AttributeScalarWhereInput!]
-    value?: number | null; // Float
-    value_gt?: number | null; // Float
-    value_gte?: number | null; // Float
-    value_in?: number[] | null; // [Float!]
-    value_lt?: number | null; // Float
-    value_lte?: number | null; // Float
-    value_not?: number | null; // Float
-    value_not_in?: number[] | null; // [Float!]
-  }
-  AttributeUpdateManyDataInput: { // input type
-    name?: string | null; // String
-    value?: number | null; // Float
-  }
-  AttributeUpdateManyInput: { // input type
-    create?: NexusGenInputs['AttributeCreateInput'][] | null; // [AttributeCreateInput!]
-    deleteMany?: NexusGenInputs['AttributeScalarWhereInput'][] | null; // [AttributeScalarWhereInput!]
-    updateMany?: NexusGenInputs['AttributeUpdateManyWithWhereNestedInput'][] | null; // [AttributeUpdateManyWithWhereNestedInput!]
-  }
-  AttributeUpdateManyWithWhereNestedInput: { // input type
-    data: NexusGenInputs['AttributeUpdateManyDataInput']; // AttributeUpdateManyDataInput!
-    where: NexusGenInputs['AttributeScalarWhereInput']; // AttributeScalarWhereInput!
-  }
   AttributeWhereInput: { // input type
     AND?: NexusGenInputs['AttributeWhereInput'][] | null; // [AttributeWhereInput!]
     name?: string | null; // String
@@ -110,71 +60,6 @@ export interface NexusGenInputs {
     value_lte?: number | null; // Float
     value_not?: number | null; // Float
     value_not_in?: number[] | null; // [Float!]
-  }
-  BrandCreateInput: { // input type
-    name: string; // String!
-    weaponParts?: NexusGenInputs['WeaponPartCreateManyWithoutBrandInput'] | null; // WeaponPartCreateManyWithoutBrandInput
-    weapons?: NexusGenInputs['WeaponBaseCreateManyWithoutBrandInput'] | null; // WeaponBaseCreateManyWithoutBrandInput
-  }
-  BrandCreateOneInput: { // input type
-    connect?: NexusGenInputs['BrandWhereUniqueInput'] | null; // BrandWhereUniqueInput
-    create?: NexusGenInputs['BrandCreateInput'] | null; // BrandCreateInput
-  }
-  BrandCreateOneWithoutWeaponPartsInput: { // input type
-    connect?: NexusGenInputs['BrandWhereUniqueInput'] | null; // BrandWhereUniqueInput
-    create?: NexusGenInputs['BrandCreateWithoutWeaponPartsInput'] | null; // BrandCreateWithoutWeaponPartsInput
-  }
-  BrandCreateOneWithoutWeaponsInput: { // input type
-    connect?: NexusGenInputs['BrandWhereUniqueInput'] | null; // BrandWhereUniqueInput
-    create?: NexusGenInputs['BrandCreateWithoutWeaponsInput'] | null; // BrandCreateWithoutWeaponsInput
-  }
-  BrandCreateWithoutWeaponPartsInput: { // input type
-    name: string; // String!
-    weapons?: NexusGenInputs['WeaponBaseCreateManyWithoutBrandInput'] | null; // WeaponBaseCreateManyWithoutBrandInput
-  }
-  BrandCreateWithoutWeaponsInput: { // input type
-    name: string; // String!
-    weaponParts?: NexusGenInputs['WeaponPartCreateManyWithoutBrandInput'] | null; // WeaponPartCreateManyWithoutBrandInput
-  }
-  BrandUpdateInput: { // input type
-    name?: string | null; // String
-    weaponParts?: NexusGenInputs['WeaponPartUpdateManyWithoutBrandInput'] | null; // WeaponPartUpdateManyWithoutBrandInput
-    weapons?: NexusGenInputs['WeaponBaseUpdateManyWithoutBrandInput'] | null; // WeaponBaseUpdateManyWithoutBrandInput
-  }
-  BrandUpdateManyMutationInput: { // input type
-    name?: string | null; // String
-  }
-  BrandUpdateOneWithoutWeaponPartsInput: { // input type
-    connect?: NexusGenInputs['BrandWhereUniqueInput'] | null; // BrandWhereUniqueInput
-    create?: NexusGenInputs['BrandCreateWithoutWeaponPartsInput'] | null; // BrandCreateWithoutWeaponPartsInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['BrandUpdateWithoutWeaponPartsDataInput'] | null; // BrandUpdateWithoutWeaponPartsDataInput
-    upsert?: NexusGenInputs['BrandUpsertWithoutWeaponPartsInput'] | null; // BrandUpsertWithoutWeaponPartsInput
-  }
-  BrandUpdateOneWithoutWeaponsInput: { // input type
-    connect?: NexusGenInputs['BrandWhereUniqueInput'] | null; // BrandWhereUniqueInput
-    create?: NexusGenInputs['BrandCreateWithoutWeaponsInput'] | null; // BrandCreateWithoutWeaponsInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['BrandUpdateWithoutWeaponsDataInput'] | null; // BrandUpdateWithoutWeaponsDataInput
-    upsert?: NexusGenInputs['BrandUpsertWithoutWeaponsInput'] | null; // BrandUpsertWithoutWeaponsInput
-  }
-  BrandUpdateWithoutWeaponPartsDataInput: { // input type
-    name?: string | null; // String
-    weapons?: NexusGenInputs['WeaponBaseUpdateManyWithoutBrandInput'] | null; // WeaponBaseUpdateManyWithoutBrandInput
-  }
-  BrandUpdateWithoutWeaponsDataInput: { // input type
-    name?: string | null; // String
-    weaponParts?: NexusGenInputs['WeaponPartUpdateManyWithoutBrandInput'] | null; // WeaponPartUpdateManyWithoutBrandInput
-  }
-  BrandUpsertWithoutWeaponPartsInput: { // input type
-    create: NexusGenInputs['BrandCreateWithoutWeaponPartsInput']; // BrandCreateWithoutWeaponPartsInput!
-    update: NexusGenInputs['BrandUpdateWithoutWeaponPartsDataInput']; // BrandUpdateWithoutWeaponPartsDataInput!
-  }
-  BrandUpsertWithoutWeaponsInput: { // input type
-    create: NexusGenInputs['BrandCreateWithoutWeaponsInput']; // BrandCreateWithoutWeaponsInput!
-    update: NexusGenInputs['BrandUpdateWithoutWeaponsDataInput']; // BrandUpdateWithoutWeaponsDataInput!
   }
   BrandWhereInput: { // input type
     AND?: NexusGenInputs['BrandWhereInput'][] | null; // [BrandWhereInput!]
@@ -212,16 +97,6 @@ export interface NexusGenInputs {
   BrandWhereUniqueInput: { // input type
     id?: string | null; // ID
   }
-  EffectCreateInput: { // input type
-    AttributeToModify?: NexusGenInputs['AttributeCreateOneInput'] | null; // AttributeCreateOneInput
-    baseValueAttribute?: NexusGenInputs['AttributeCreateOneInput'] | null; // AttributeCreateOneInput
-    baseValueConstant?: number | null; // Float
-    baseValueScaleConstant?: number | null; // Float
-    modifierType?: NexusGenEnums['ModifierType'] | null; // ModifierType
-  }
-  EffectCreateManyInput: { // input type
-    create?: NexusGenInputs['EffectCreateInput'][] | null; // [EffectCreateInput!]
-  }
   EffectRestrictedWhereInput: { // input type
     AND?: NexusGenInputs['EffectRestrictedWhereInput'][] | null; // [EffectRestrictedWhereInput!]
     AttributeToModify?: NexusGenInputs['AttributeRestrictedWhereInput'] | null; // AttributeRestrictedWhereInput
@@ -246,45 +121,6 @@ export interface NexusGenInputs {
     modifierType_in?: NexusGenEnums['ModifierType'][] | null; // [ModifierType!]
     modifierType_not?: NexusGenEnums['ModifierType'] | null; // ModifierType
     modifierType_not_in?: NexusGenEnums['ModifierType'][] | null; // [ModifierType!]
-  }
-  EffectScalarWhereInput: { // input type
-    AND?: NexusGenInputs['EffectScalarWhereInput'][] | null; // [EffectScalarWhereInput!]
-    baseValueConstant?: number | null; // Float
-    baseValueConstant_gt?: number | null; // Float
-    baseValueConstant_gte?: number | null; // Float
-    baseValueConstant_in?: number[] | null; // [Float!]
-    baseValueConstant_lt?: number | null; // Float
-    baseValueConstant_lte?: number | null; // Float
-    baseValueConstant_not?: number | null; // Float
-    baseValueConstant_not_in?: number[] | null; // [Float!]
-    baseValueScaleConstant?: number | null; // Float
-    baseValueScaleConstant_gt?: number | null; // Float
-    baseValueScaleConstant_gte?: number | null; // Float
-    baseValueScaleConstant_in?: number[] | null; // [Float!]
-    baseValueScaleConstant_lt?: number | null; // Float
-    baseValueScaleConstant_lte?: number | null; // Float
-    baseValueScaleConstant_not?: number | null; // Float
-    baseValueScaleConstant_not_in?: number[] | null; // [Float!]
-    modifierType?: NexusGenEnums['ModifierType'] | null; // ModifierType
-    modifierType_in?: NexusGenEnums['ModifierType'][] | null; // [ModifierType!]
-    modifierType_not?: NexusGenEnums['ModifierType'] | null; // ModifierType
-    modifierType_not_in?: NexusGenEnums['ModifierType'][] | null; // [ModifierType!]
-    NOT?: NexusGenInputs['EffectScalarWhereInput'][] | null; // [EffectScalarWhereInput!]
-    OR?: NexusGenInputs['EffectScalarWhereInput'][] | null; // [EffectScalarWhereInput!]
-  }
-  EffectUpdateManyDataInput: { // input type
-    baseValueConstant?: number | null; // Float
-    baseValueScaleConstant?: number | null; // Float
-    modifierType?: NexusGenEnums['ModifierType'] | null; // ModifierType
-  }
-  EffectUpdateManyInput: { // input type
-    create?: NexusGenInputs['EffectCreateInput'][] | null; // [EffectCreateInput!]
-    deleteMany?: NexusGenInputs['EffectScalarWhereInput'][] | null; // [EffectScalarWhereInput!]
-    updateMany?: NexusGenInputs['EffectUpdateManyWithWhereNestedInput'][] | null; // [EffectUpdateManyWithWhereNestedInput!]
-  }
-  EffectUpdateManyWithWhereNestedInput: { // input type
-    data: NexusGenInputs['EffectUpdateManyDataInput']; // EffectUpdateManyDataInput!
-    where: NexusGenInputs['EffectScalarWhereInput']; // EffectScalarWhereInput!
   }
   EffectWhereInput: { // input type
     AND?: NexusGenInputs['EffectWhereInput'][] | null; // [EffectWhereInput!]
@@ -311,13 +147,6 @@ export interface NexusGenInputs {
     modifierType_not?: NexusGenEnums['ModifierType'] | null; // ModifierType
     modifierType_not_in?: NexusGenEnums['ModifierType'][] | null; // [ModifierType!]
   }
-  NameByBrandCreateInput: { // input type
-    brand?: NexusGenInputs['BrandCreateOneInput'] | null; // BrandCreateOneInput
-    name: string; // String!
-  }
-  NameByBrandCreateManyInput: { // input type
-    create?: NexusGenInputs['NameByBrandCreateInput'][] | null; // [NameByBrandCreateInput!]
-  }
   NameByBrandRestrictedWhereInput: { // input type
     AND?: NexusGenInputs['NameByBrandRestrictedWhereInput'][] | null; // [NameByBrandRestrictedWhereInput!]
     name?: string | null; // String
@@ -334,37 +163,6 @@ export interface NexusGenInputs {
     name_not_in?: string[] | null; // [String!]
     name_not_starts_with?: string | null; // String
     name_starts_with?: string | null; // String
-  }
-  NameByBrandScalarWhereInput: { // input type
-    AND?: NexusGenInputs['NameByBrandScalarWhereInput'][] | null; // [NameByBrandScalarWhereInput!]
-    name?: string | null; // String
-    name_contains?: string | null; // String
-    name_ends_with?: string | null; // String
-    name_gt?: string | null; // String
-    name_gte?: string | null; // String
-    name_in?: string[] | null; // [String!]
-    name_lt?: string | null; // String
-    name_lte?: string | null; // String
-    name_not?: string | null; // String
-    name_not_contains?: string | null; // String
-    name_not_ends_with?: string | null; // String
-    name_not_in?: string[] | null; // [String!]
-    name_not_starts_with?: string | null; // String
-    name_starts_with?: string | null; // String
-    NOT?: NexusGenInputs['NameByBrandScalarWhereInput'][] | null; // [NameByBrandScalarWhereInput!]
-    OR?: NexusGenInputs['NameByBrandScalarWhereInput'][] | null; // [NameByBrandScalarWhereInput!]
-  }
-  NameByBrandUpdateManyDataInput: { // input type
-    name?: string | null; // String
-  }
-  NameByBrandUpdateManyInput: { // input type
-    create?: NexusGenInputs['NameByBrandCreateInput'][] | null; // [NameByBrandCreateInput!]
-    deleteMany?: NexusGenInputs['NameByBrandScalarWhereInput'][] | null; // [NameByBrandScalarWhereInput!]
-    updateMany?: NexusGenInputs['NameByBrandUpdateManyWithWhereNestedInput'][] | null; // [NameByBrandUpdateManyWithWhereNestedInput!]
-  }
-  NameByBrandUpdateManyWithWhereNestedInput: { // input type
-    data: NexusGenInputs['NameByBrandUpdateManyDataInput']; // NameByBrandUpdateManyDataInput!
-    where: NexusGenInputs['NameByBrandScalarWhereInput']; // NameByBrandScalarWhereInput!
   }
   NameByBrandWhereInput: { // input type
     AND?: NexusGenInputs['NameByBrandWhereInput'][] | null; // [NameByBrandWhereInput!]
@@ -383,15 +181,6 @@ export interface NexusGenInputs {
     name_not_in?: string[] | null; // [String!]
     name_not_starts_with?: string | null; // String
     name_starts_with?: string | null; // String
-  }
-  UserCreateInput: { // input type
-    name: string; // String!
-  }
-  UserUpdateInput: { // input type
-    name?: string | null; // String
-  }
-  UserUpdateManyMutationInput: { // input type
-    name?: string | null; // String
   }
   UserWhereInput: { // input type
     AND?: NexusGenInputs['UserWhereInput'][] | null; // [UserWhereInput!]
@@ -427,91 +216,6 @@ export interface NexusGenInputs {
   UserWhereUniqueInput: { // input type
     id?: string | null; // ID
   }
-  WeaponBaseCreateInput: { // input type
-    attributes?: NexusGenInputs['AttributeCreateManyInput'] | null; // AttributeCreateManyInput
-    brand?: NexusGenInputs['BrandCreateOneWithoutWeaponsInput'] | null; // BrandCreateOneWithoutWeaponsInput
-    rarity?: NexusGenEnums['Rarity'] | null; // Rarity
-    type?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponBaseCreateManyWithoutBrandInput: { // input type
-    connect?: NexusGenInputs['WeaponBaseWhereUniqueInput'][] | null; // [WeaponBaseWhereUniqueInput!]
-    create?: NexusGenInputs['WeaponBaseCreateWithoutBrandInput'][] | null; // [WeaponBaseCreateWithoutBrandInput!]
-  }
-  WeaponBaseCreateWithoutBrandInput: { // input type
-    attributes?: NexusGenInputs['AttributeCreateManyInput'] | null; // AttributeCreateManyInput
-    rarity?: NexusGenEnums['Rarity'] | null; // Rarity
-    type?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponBaseScalarWhereInput: { // input type
-    AND?: NexusGenInputs['WeaponBaseScalarWhereInput'][] | null; // [WeaponBaseScalarWhereInput!]
-    id?: string | null; // ID
-    id_contains?: string | null; // ID
-    id_ends_with?: string | null; // ID
-    id_gt?: string | null; // ID
-    id_gte?: string | null; // ID
-    id_in?: string[] | null; // [ID!]
-    id_lt?: string | null; // ID
-    id_lte?: string | null; // ID
-    id_not?: string | null; // ID
-    id_not_contains?: string | null; // ID
-    id_not_ends_with?: string | null; // ID
-    id_not_in?: string[] | null; // [ID!]
-    id_not_starts_with?: string | null; // ID
-    id_starts_with?: string | null; // ID
-    NOT?: NexusGenInputs['WeaponBaseScalarWhereInput'][] | null; // [WeaponBaseScalarWhereInput!]
-    OR?: NexusGenInputs['WeaponBaseScalarWhereInput'][] | null; // [WeaponBaseScalarWhereInput!]
-    rarity?: NexusGenEnums['Rarity'] | null; // Rarity
-    rarity_in?: NexusGenEnums['Rarity'][] | null; // [Rarity!]
-    rarity_not?: NexusGenEnums['Rarity'] | null; // Rarity
-    rarity_not_in?: NexusGenEnums['Rarity'][] | null; // [Rarity!]
-    type?: NexusGenEnums['WeaponType'] | null; // WeaponType
-    type_in?: NexusGenEnums['WeaponType'][] | null; // [WeaponType!]
-    type_not?: NexusGenEnums['WeaponType'] | null; // WeaponType
-    type_not_in?: NexusGenEnums['WeaponType'][] | null; // [WeaponType!]
-  }
-  WeaponBaseUpdateInput: { // input type
-    attributes?: NexusGenInputs['AttributeUpdateManyInput'] | null; // AttributeUpdateManyInput
-    brand?: NexusGenInputs['BrandUpdateOneWithoutWeaponsInput'] | null; // BrandUpdateOneWithoutWeaponsInput
-    rarity?: NexusGenEnums['Rarity'] | null; // Rarity
-    type?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponBaseUpdateManyDataInput: { // input type
-    rarity?: NexusGenEnums['Rarity'] | null; // Rarity
-    type?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponBaseUpdateManyMutationInput: { // input type
-    rarity?: NexusGenEnums['Rarity'] | null; // Rarity
-    type?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponBaseUpdateManyWithWhereNestedInput: { // input type
-    data: NexusGenInputs['WeaponBaseUpdateManyDataInput']; // WeaponBaseUpdateManyDataInput!
-    where: NexusGenInputs['WeaponBaseScalarWhereInput']; // WeaponBaseScalarWhereInput!
-  }
-  WeaponBaseUpdateManyWithoutBrandInput: { // input type
-    connect?: NexusGenInputs['WeaponBaseWhereUniqueInput'][] | null; // [WeaponBaseWhereUniqueInput!]
-    create?: NexusGenInputs['WeaponBaseCreateWithoutBrandInput'][] | null; // [WeaponBaseCreateWithoutBrandInput!]
-    delete?: NexusGenInputs['WeaponBaseWhereUniqueInput'][] | null; // [WeaponBaseWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['WeaponBaseScalarWhereInput'][] | null; // [WeaponBaseScalarWhereInput!]
-    disconnect?: NexusGenInputs['WeaponBaseWhereUniqueInput'][] | null; // [WeaponBaseWhereUniqueInput!]
-    set?: NexusGenInputs['WeaponBaseWhereUniqueInput'][] | null; // [WeaponBaseWhereUniqueInput!]
-    update?: NexusGenInputs['WeaponBaseUpdateWithWhereUniqueWithoutBrandInput'][] | null; // [WeaponBaseUpdateWithWhereUniqueWithoutBrandInput!]
-    updateMany?: NexusGenInputs['WeaponBaseUpdateManyWithWhereNestedInput'][] | null; // [WeaponBaseUpdateManyWithWhereNestedInput!]
-    upsert?: NexusGenInputs['WeaponBaseUpsertWithWhereUniqueWithoutBrandInput'][] | null; // [WeaponBaseUpsertWithWhereUniqueWithoutBrandInput!]
-  }
-  WeaponBaseUpdateWithWhereUniqueWithoutBrandInput: { // input type
-    data: NexusGenInputs['WeaponBaseUpdateWithoutBrandDataInput']; // WeaponBaseUpdateWithoutBrandDataInput!
-    where: NexusGenInputs['WeaponBaseWhereUniqueInput']; // WeaponBaseWhereUniqueInput!
-  }
-  WeaponBaseUpdateWithoutBrandDataInput: { // input type
-    attributes?: NexusGenInputs['AttributeUpdateManyInput'] | null; // AttributeUpdateManyInput
-    rarity?: NexusGenEnums['Rarity'] | null; // Rarity
-    type?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponBaseUpsertWithWhereUniqueWithoutBrandInput: { // input type
-    create: NexusGenInputs['WeaponBaseCreateWithoutBrandInput']; // WeaponBaseCreateWithoutBrandInput!
-    update: NexusGenInputs['WeaponBaseUpdateWithoutBrandDataInput']; // WeaponBaseUpdateWithoutBrandDataInput!
-    where: NexusGenInputs['WeaponBaseWhereUniqueInput']; // WeaponBaseWhereUniqueInput!
-  }
   WeaponBaseWhereInput: { // input type
     AND?: NexusGenInputs['WeaponBaseWhereInput'][] | null; // [WeaponBaseWhereInput!]
     attributes_every?: NexusGenInputs['AttributeRestrictedWhereInput'] | null; // AttributeRestrictedWhereInput
@@ -543,99 +247,6 @@ export interface NexusGenInputs {
   }
   WeaponBaseWhereUniqueInput: { // input type
     id?: string | null; // ID
-  }
-  WeaponPartCreateInput: { // input type
-    brand?: NexusGenInputs['BrandCreateOneWithoutWeaponPartsInput'] | null; // BrandCreateOneWithoutWeaponPartsInput
-    effects?: NexusGenInputs['EffectCreateManyInput'] | null; // EffectCreateManyInput
-    partType?: NexusGenEnums['WeaponPartType'] | null; // WeaponPartType
-    prefixes?: NexusGenInputs['NameByBrandCreateManyInput'] | null; // NameByBrandCreateManyInput
-    titles?: NexusGenInputs['NameByBrandCreateManyInput'] | null; // NameByBrandCreateManyInput
-    weaponType?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponPartCreateManyWithoutBrandInput: { // input type
-    connect?: NexusGenInputs['WeaponPartWhereUniqueInput'][] | null; // [WeaponPartWhereUniqueInput!]
-    create?: NexusGenInputs['WeaponPartCreateWithoutBrandInput'][] | null; // [WeaponPartCreateWithoutBrandInput!]
-  }
-  WeaponPartCreateWithoutBrandInput: { // input type
-    effects?: NexusGenInputs['EffectCreateManyInput'] | null; // EffectCreateManyInput
-    partType?: NexusGenEnums['WeaponPartType'] | null; // WeaponPartType
-    prefixes?: NexusGenInputs['NameByBrandCreateManyInput'] | null; // NameByBrandCreateManyInput
-    titles?: NexusGenInputs['NameByBrandCreateManyInput'] | null; // NameByBrandCreateManyInput
-    weaponType?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponPartScalarWhereInput: { // input type
-    AND?: NexusGenInputs['WeaponPartScalarWhereInput'][] | null; // [WeaponPartScalarWhereInput!]
-    id?: string | null; // ID
-    id_contains?: string | null; // ID
-    id_ends_with?: string | null; // ID
-    id_gt?: string | null; // ID
-    id_gte?: string | null; // ID
-    id_in?: string[] | null; // [ID!]
-    id_lt?: string | null; // ID
-    id_lte?: string | null; // ID
-    id_not?: string | null; // ID
-    id_not_contains?: string | null; // ID
-    id_not_ends_with?: string | null; // ID
-    id_not_in?: string[] | null; // [ID!]
-    id_not_starts_with?: string | null; // ID
-    id_starts_with?: string | null; // ID
-    NOT?: NexusGenInputs['WeaponPartScalarWhereInput'][] | null; // [WeaponPartScalarWhereInput!]
-    OR?: NexusGenInputs['WeaponPartScalarWhereInput'][] | null; // [WeaponPartScalarWhereInput!]
-    partType?: NexusGenEnums['WeaponPartType'] | null; // WeaponPartType
-    partType_in?: NexusGenEnums['WeaponPartType'][] | null; // [WeaponPartType!]
-    partType_not?: NexusGenEnums['WeaponPartType'] | null; // WeaponPartType
-    partType_not_in?: NexusGenEnums['WeaponPartType'][] | null; // [WeaponPartType!]
-    weaponType?: NexusGenEnums['WeaponType'] | null; // WeaponType
-    weaponType_in?: NexusGenEnums['WeaponType'][] | null; // [WeaponType!]
-    weaponType_not?: NexusGenEnums['WeaponType'] | null; // WeaponType
-    weaponType_not_in?: NexusGenEnums['WeaponType'][] | null; // [WeaponType!]
-  }
-  WeaponPartUpdateInput: { // input type
-    brand?: NexusGenInputs['BrandUpdateOneWithoutWeaponPartsInput'] | null; // BrandUpdateOneWithoutWeaponPartsInput
-    effects?: NexusGenInputs['EffectUpdateManyInput'] | null; // EffectUpdateManyInput
-    partType?: NexusGenEnums['WeaponPartType'] | null; // WeaponPartType
-    prefixes?: NexusGenInputs['NameByBrandUpdateManyInput'] | null; // NameByBrandUpdateManyInput
-    titles?: NexusGenInputs['NameByBrandUpdateManyInput'] | null; // NameByBrandUpdateManyInput
-    weaponType?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponPartUpdateManyDataInput: { // input type
-    partType?: NexusGenEnums['WeaponPartType'] | null; // WeaponPartType
-    weaponType?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponPartUpdateManyMutationInput: { // input type
-    partType?: NexusGenEnums['WeaponPartType'] | null; // WeaponPartType
-    weaponType?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponPartUpdateManyWithWhereNestedInput: { // input type
-    data: NexusGenInputs['WeaponPartUpdateManyDataInput']; // WeaponPartUpdateManyDataInput!
-    where: NexusGenInputs['WeaponPartScalarWhereInput']; // WeaponPartScalarWhereInput!
-  }
-  WeaponPartUpdateManyWithoutBrandInput: { // input type
-    connect?: NexusGenInputs['WeaponPartWhereUniqueInput'][] | null; // [WeaponPartWhereUniqueInput!]
-    create?: NexusGenInputs['WeaponPartCreateWithoutBrandInput'][] | null; // [WeaponPartCreateWithoutBrandInput!]
-    delete?: NexusGenInputs['WeaponPartWhereUniqueInput'][] | null; // [WeaponPartWhereUniqueInput!]
-    deleteMany?: NexusGenInputs['WeaponPartScalarWhereInput'][] | null; // [WeaponPartScalarWhereInput!]
-    disconnect?: NexusGenInputs['WeaponPartWhereUniqueInput'][] | null; // [WeaponPartWhereUniqueInput!]
-    set?: NexusGenInputs['WeaponPartWhereUniqueInput'][] | null; // [WeaponPartWhereUniqueInput!]
-    update?: NexusGenInputs['WeaponPartUpdateWithWhereUniqueWithoutBrandInput'][] | null; // [WeaponPartUpdateWithWhereUniqueWithoutBrandInput!]
-    updateMany?: NexusGenInputs['WeaponPartUpdateManyWithWhereNestedInput'][] | null; // [WeaponPartUpdateManyWithWhereNestedInput!]
-    upsert?: NexusGenInputs['WeaponPartUpsertWithWhereUniqueWithoutBrandInput'][] | null; // [WeaponPartUpsertWithWhereUniqueWithoutBrandInput!]
-  }
-  WeaponPartUpdateWithWhereUniqueWithoutBrandInput: { // input type
-    data: NexusGenInputs['WeaponPartUpdateWithoutBrandDataInput']; // WeaponPartUpdateWithoutBrandDataInput!
-    where: NexusGenInputs['WeaponPartWhereUniqueInput']; // WeaponPartWhereUniqueInput!
-  }
-  WeaponPartUpdateWithoutBrandDataInput: { // input type
-    effects?: NexusGenInputs['EffectUpdateManyInput'] | null; // EffectUpdateManyInput
-    partType?: NexusGenEnums['WeaponPartType'] | null; // WeaponPartType
-    prefixes?: NexusGenInputs['NameByBrandUpdateManyInput'] | null; // NameByBrandUpdateManyInput
-    titles?: NexusGenInputs['NameByBrandUpdateManyInput'] | null; // NameByBrandUpdateManyInput
-    weaponType?: NexusGenEnums['WeaponType'] | null; // WeaponType
-  }
-  WeaponPartUpsertWithWhereUniqueWithoutBrandInput: { // input type
-    create: NexusGenInputs['WeaponPartCreateWithoutBrandInput']; // WeaponPartCreateWithoutBrandInput!
-    update: NexusGenInputs['WeaponPartUpdateWithoutBrandDataInput']; // WeaponPartUpdateWithoutBrandDataInput!
-    where: NexusGenInputs['WeaponPartWhereUniqueInput']; // WeaponPartWhereUniqueInput!
   }
   WeaponPartWhereInput: { // input type
     AND?: NexusGenInputs['WeaponPartWhereInput'][] | null; // [WeaponPartWhereInput!]
@@ -705,9 +316,6 @@ export interface NexusGenRootTypes {
     name: string; // String!
     value?: number | null; // Float
   }
-  BatchPayload: { // root type
-    count: any; // Long!
-  }
   Brand: { // root type
     id: string; // ID!
     name: string; // String!
@@ -724,7 +332,6 @@ export interface NexusGenRootTypes {
     baseValueConstant?: number | null; // Float
     baseValueScaleConstant?: number | null; // Float
   }
-  Mutation: {};
   NameByBrand: { // root type
     name: string; // String!
   }
@@ -775,82 +382,21 @@ export interface NexusGenRootTypes {
   Float: number;
   Boolean: boolean;
   ID: string;
-  Long: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
-  AttributeCreateInput: NexusGenInputs['AttributeCreateInput'];
-  AttributeCreateManyInput: NexusGenInputs['AttributeCreateManyInput'];
-  AttributeCreateOneInput: NexusGenInputs['AttributeCreateOneInput'];
   AttributeRestrictedWhereInput: NexusGenInputs['AttributeRestrictedWhereInput'];
-  AttributeScalarWhereInput: NexusGenInputs['AttributeScalarWhereInput'];
-  AttributeUpdateManyDataInput: NexusGenInputs['AttributeUpdateManyDataInput'];
-  AttributeUpdateManyInput: NexusGenInputs['AttributeUpdateManyInput'];
-  AttributeUpdateManyWithWhereNestedInput: NexusGenInputs['AttributeUpdateManyWithWhereNestedInput'];
   AttributeWhereInput: NexusGenInputs['AttributeWhereInput'];
-  BrandCreateInput: NexusGenInputs['BrandCreateInput'];
-  BrandCreateOneInput: NexusGenInputs['BrandCreateOneInput'];
-  BrandCreateOneWithoutWeaponPartsInput: NexusGenInputs['BrandCreateOneWithoutWeaponPartsInput'];
-  BrandCreateOneWithoutWeaponsInput: NexusGenInputs['BrandCreateOneWithoutWeaponsInput'];
-  BrandCreateWithoutWeaponPartsInput: NexusGenInputs['BrandCreateWithoutWeaponPartsInput'];
-  BrandCreateWithoutWeaponsInput: NexusGenInputs['BrandCreateWithoutWeaponsInput'];
-  BrandUpdateInput: NexusGenInputs['BrandUpdateInput'];
-  BrandUpdateManyMutationInput: NexusGenInputs['BrandUpdateManyMutationInput'];
-  BrandUpdateOneWithoutWeaponPartsInput: NexusGenInputs['BrandUpdateOneWithoutWeaponPartsInput'];
-  BrandUpdateOneWithoutWeaponsInput: NexusGenInputs['BrandUpdateOneWithoutWeaponsInput'];
-  BrandUpdateWithoutWeaponPartsDataInput: NexusGenInputs['BrandUpdateWithoutWeaponPartsDataInput'];
-  BrandUpdateWithoutWeaponsDataInput: NexusGenInputs['BrandUpdateWithoutWeaponsDataInput'];
-  BrandUpsertWithoutWeaponPartsInput: NexusGenInputs['BrandUpsertWithoutWeaponPartsInput'];
-  BrandUpsertWithoutWeaponsInput: NexusGenInputs['BrandUpsertWithoutWeaponsInput'];
   BrandWhereInput: NexusGenInputs['BrandWhereInput'];
   BrandWhereUniqueInput: NexusGenInputs['BrandWhereUniqueInput'];
-  EffectCreateInput: NexusGenInputs['EffectCreateInput'];
-  EffectCreateManyInput: NexusGenInputs['EffectCreateManyInput'];
   EffectRestrictedWhereInput: NexusGenInputs['EffectRestrictedWhereInput'];
-  EffectScalarWhereInput: NexusGenInputs['EffectScalarWhereInput'];
-  EffectUpdateManyDataInput: NexusGenInputs['EffectUpdateManyDataInput'];
-  EffectUpdateManyInput: NexusGenInputs['EffectUpdateManyInput'];
-  EffectUpdateManyWithWhereNestedInput: NexusGenInputs['EffectUpdateManyWithWhereNestedInput'];
   EffectWhereInput: NexusGenInputs['EffectWhereInput'];
-  NameByBrandCreateInput: NexusGenInputs['NameByBrandCreateInput'];
-  NameByBrandCreateManyInput: NexusGenInputs['NameByBrandCreateManyInput'];
   NameByBrandRestrictedWhereInput: NexusGenInputs['NameByBrandRestrictedWhereInput'];
-  NameByBrandScalarWhereInput: NexusGenInputs['NameByBrandScalarWhereInput'];
-  NameByBrandUpdateManyDataInput: NexusGenInputs['NameByBrandUpdateManyDataInput'];
-  NameByBrandUpdateManyInput: NexusGenInputs['NameByBrandUpdateManyInput'];
-  NameByBrandUpdateManyWithWhereNestedInput: NexusGenInputs['NameByBrandUpdateManyWithWhereNestedInput'];
   NameByBrandWhereInput: NexusGenInputs['NameByBrandWhereInput'];
-  UserCreateInput: NexusGenInputs['UserCreateInput'];
-  UserUpdateInput: NexusGenInputs['UserUpdateInput'];
-  UserUpdateManyMutationInput: NexusGenInputs['UserUpdateManyMutationInput'];
   UserWhereInput: NexusGenInputs['UserWhereInput'];
   UserWhereUniqueInput: NexusGenInputs['UserWhereUniqueInput'];
-  WeaponBaseCreateInput: NexusGenInputs['WeaponBaseCreateInput'];
-  WeaponBaseCreateManyWithoutBrandInput: NexusGenInputs['WeaponBaseCreateManyWithoutBrandInput'];
-  WeaponBaseCreateWithoutBrandInput: NexusGenInputs['WeaponBaseCreateWithoutBrandInput'];
-  WeaponBaseScalarWhereInput: NexusGenInputs['WeaponBaseScalarWhereInput'];
-  WeaponBaseUpdateInput: NexusGenInputs['WeaponBaseUpdateInput'];
-  WeaponBaseUpdateManyDataInput: NexusGenInputs['WeaponBaseUpdateManyDataInput'];
-  WeaponBaseUpdateManyMutationInput: NexusGenInputs['WeaponBaseUpdateManyMutationInput'];
-  WeaponBaseUpdateManyWithWhereNestedInput: NexusGenInputs['WeaponBaseUpdateManyWithWhereNestedInput'];
-  WeaponBaseUpdateManyWithoutBrandInput: NexusGenInputs['WeaponBaseUpdateManyWithoutBrandInput'];
-  WeaponBaseUpdateWithWhereUniqueWithoutBrandInput: NexusGenInputs['WeaponBaseUpdateWithWhereUniqueWithoutBrandInput'];
-  WeaponBaseUpdateWithoutBrandDataInput: NexusGenInputs['WeaponBaseUpdateWithoutBrandDataInput'];
-  WeaponBaseUpsertWithWhereUniqueWithoutBrandInput: NexusGenInputs['WeaponBaseUpsertWithWhereUniqueWithoutBrandInput'];
   WeaponBaseWhereInput: NexusGenInputs['WeaponBaseWhereInput'];
   WeaponBaseWhereUniqueInput: NexusGenInputs['WeaponBaseWhereUniqueInput'];
-  WeaponPartCreateInput: NexusGenInputs['WeaponPartCreateInput'];
-  WeaponPartCreateManyWithoutBrandInput: NexusGenInputs['WeaponPartCreateManyWithoutBrandInput'];
-  WeaponPartCreateWithoutBrandInput: NexusGenInputs['WeaponPartCreateWithoutBrandInput'];
-  WeaponPartScalarWhereInput: NexusGenInputs['WeaponPartScalarWhereInput'];
-  WeaponPartUpdateInput: NexusGenInputs['WeaponPartUpdateInput'];
-  WeaponPartUpdateManyDataInput: NexusGenInputs['WeaponPartUpdateManyDataInput'];
-  WeaponPartUpdateManyMutationInput: NexusGenInputs['WeaponPartUpdateManyMutationInput'];
-  WeaponPartUpdateManyWithWhereNestedInput: NexusGenInputs['WeaponPartUpdateManyWithWhereNestedInput'];
-  WeaponPartUpdateManyWithoutBrandInput: NexusGenInputs['WeaponPartUpdateManyWithoutBrandInput'];
-  WeaponPartUpdateWithWhereUniqueWithoutBrandInput: NexusGenInputs['WeaponPartUpdateWithWhereUniqueWithoutBrandInput'];
-  WeaponPartUpdateWithoutBrandDataInput: NexusGenInputs['WeaponPartUpdateWithoutBrandDataInput'];
-  WeaponPartUpsertWithWhereUniqueWithoutBrandInput: NexusGenInputs['WeaponPartUpsertWithWhereUniqueWithoutBrandInput'];
   WeaponPartWhereInput: NexusGenInputs['WeaponPartWhereInput'];
   WeaponPartWhereUniqueInput: NexusGenInputs['WeaponPartWhereUniqueInput'];
   BrandOrderByInput: NexusGenEnums['BrandOrderByInput'];
@@ -880,9 +426,6 @@ export interface NexusGenFieldTypes {
     name: string; // String!
     value: number | null; // Float
   }
-  BatchPayload: { // field return type
-    count: any; // Long!
-  }
   Brand: { // field return type
     id: string; // ID!
     name: string; // String!
@@ -904,32 +447,6 @@ export interface NexusGenFieldTypes {
     baseValueConstant: number | null; // Float
     baseValueScaleConstant: number | null; // Float
     modifierType: NexusGenEnums['ModifierType'] | null; // ModifierType
-  }
-  Mutation: { // field return type
-    createBrand: NexusGenRootTypes['Brand']; // Brand!
-    createUser: NexusGenRootTypes['User']; // User!
-    createWeaponBase: NexusGenRootTypes['WeaponBase']; // WeaponBase!
-    createWeaponPart: NexusGenRootTypes['WeaponPart']; // WeaponPart!
-    deleteBrand: NexusGenRootTypes['Brand'] | null; // Brand
-    deleteManyBrands: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    deleteManyUsers: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    deleteManyWeaponBases: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    deleteManyWeaponParts: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    deleteUser: NexusGenRootTypes['User'] | null; // User
-    deleteWeaponBase: NexusGenRootTypes['WeaponBase'] | null; // WeaponBase
-    deleteWeaponPart: NexusGenRootTypes['WeaponPart'] | null; // WeaponPart
-    updateBrand: NexusGenRootTypes['Brand'] | null; // Brand
-    updateManyBrands: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    updateManyUsers: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    updateManyWeaponBases: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    updateManyWeaponParts: NexusGenRootTypes['BatchPayload']; // BatchPayload!
-    updateUser: NexusGenRootTypes['User'] | null; // User
-    updateWeaponBase: NexusGenRootTypes['WeaponBase'] | null; // WeaponBase
-    updateWeaponPart: NexusGenRootTypes['WeaponPart'] | null; // WeaponPart
-    upsertBrand: NexusGenRootTypes['Brand']; // Brand!
-    upsertUser: NexusGenRootTypes['User']; // User!
-    upsertWeaponBase: NexusGenRootTypes['WeaponBase']; // WeaponBase!
-    upsertWeaponPart: NexusGenRootTypes['WeaponPart']; // WeaponPart!
   }
   NameByBrand: { // field return type
     brand: NexusGenRootTypes['Brand'] | null; // Brand
@@ -1029,96 +546,6 @@ export interface NexusGenArgTypes {
       where?: NexusGenInputs['WeaponBaseWhereInput'] | null; // WeaponBaseWhereInput
     }
   }
-  Mutation: {
-    createBrand: { // args
-      data: NexusGenInputs['BrandCreateInput']; // BrandCreateInput!
-    }
-    createUser: { // args
-      data: NexusGenInputs['UserCreateInput']; // UserCreateInput!
-    }
-    createWeaponBase: { // args
-      data: NexusGenInputs['WeaponBaseCreateInput']; // WeaponBaseCreateInput!
-    }
-    createWeaponPart: { // args
-      data: NexusGenInputs['WeaponPartCreateInput']; // WeaponPartCreateInput!
-    }
-    deleteBrand: { // args
-      where: NexusGenInputs['BrandWhereUniqueInput']; // BrandWhereUniqueInput!
-    }
-    deleteManyBrands: { // args
-      where?: NexusGenInputs['BrandWhereInput'] | null; // BrandWhereInput
-    }
-    deleteManyUsers: { // args
-      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    }
-    deleteManyWeaponBases: { // args
-      where?: NexusGenInputs['WeaponBaseWhereInput'] | null; // WeaponBaseWhereInput
-    }
-    deleteManyWeaponParts: { // args
-      where?: NexusGenInputs['WeaponPartWhereInput'] | null; // WeaponPartWhereInput
-    }
-    deleteUser: { // args
-      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
-    }
-    deleteWeaponBase: { // args
-      where: NexusGenInputs['WeaponBaseWhereUniqueInput']; // WeaponBaseWhereUniqueInput!
-    }
-    deleteWeaponPart: { // args
-      where: NexusGenInputs['WeaponPartWhereUniqueInput']; // WeaponPartWhereUniqueInput!
-    }
-    updateBrand: { // args
-      data: NexusGenInputs['BrandUpdateInput']; // BrandUpdateInput!
-      where: NexusGenInputs['BrandWhereUniqueInput']; // BrandWhereUniqueInput!
-    }
-    updateManyBrands: { // args
-      data: NexusGenInputs['BrandUpdateManyMutationInput']; // BrandUpdateManyMutationInput!
-      where?: NexusGenInputs['BrandWhereInput'] | null; // BrandWhereInput
-    }
-    updateManyUsers: { // args
-      data: NexusGenInputs['UserUpdateManyMutationInput']; // UserUpdateManyMutationInput!
-      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    }
-    updateManyWeaponBases: { // args
-      data: NexusGenInputs['WeaponBaseUpdateManyMutationInput']; // WeaponBaseUpdateManyMutationInput!
-      where?: NexusGenInputs['WeaponBaseWhereInput'] | null; // WeaponBaseWhereInput
-    }
-    updateManyWeaponParts: { // args
-      data: NexusGenInputs['WeaponPartUpdateManyMutationInput']; // WeaponPartUpdateManyMutationInput!
-      where?: NexusGenInputs['WeaponPartWhereInput'] | null; // WeaponPartWhereInput
-    }
-    updateUser: { // args
-      data: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!
-      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
-    }
-    updateWeaponBase: { // args
-      data: NexusGenInputs['WeaponBaseUpdateInput']; // WeaponBaseUpdateInput!
-      where: NexusGenInputs['WeaponBaseWhereUniqueInput']; // WeaponBaseWhereUniqueInput!
-    }
-    updateWeaponPart: { // args
-      data: NexusGenInputs['WeaponPartUpdateInput']; // WeaponPartUpdateInput!
-      where: NexusGenInputs['WeaponPartWhereUniqueInput']; // WeaponPartWhereUniqueInput!
-    }
-    upsertBrand: { // args
-      create: NexusGenInputs['BrandCreateInput']; // BrandCreateInput!
-      update: NexusGenInputs['BrandUpdateInput']; // BrandUpdateInput!
-      where: NexusGenInputs['BrandWhereUniqueInput']; // BrandWhereUniqueInput!
-    }
-    upsertUser: { // args
-      create: NexusGenInputs['UserCreateInput']; // UserCreateInput!
-      update: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!
-      where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
-    }
-    upsertWeaponBase: { // args
-      create: NexusGenInputs['WeaponBaseCreateInput']; // WeaponBaseCreateInput!
-      update: NexusGenInputs['WeaponBaseUpdateInput']; // WeaponBaseUpdateInput!
-      where: NexusGenInputs['WeaponBaseWhereUniqueInput']; // WeaponBaseWhereUniqueInput!
-    }
-    upsertWeaponPart: { // args
-      create: NexusGenInputs['WeaponPartCreateInput']; // WeaponPartCreateInput!
-      update: NexusGenInputs['WeaponPartUpdateInput']; // WeaponPartUpdateInput!
-      where: NexusGenInputs['WeaponPartWhereUniqueInput']; // WeaponPartWhereUniqueInput!
-    }
-  }
   Query: {
     brand: { // args
       where: NexusGenInputs['BrandWhereUniqueInput']; // BrandWhereUniqueInput!
@@ -1215,15 +642,15 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AggregateBrand" | "AggregateUser" | "AggregateWeaponBase" | "AggregateWeaponPart" | "Attribute" | "BatchPayload" | "Brand" | "BrandConnection" | "BrandEdge" | "Effect" | "Mutation" | "NameByBrand" | "PageInfo" | "Query" | "User" | "UserConnection" | "UserEdge" | "WeaponBase" | "WeaponBaseConnection" | "WeaponBaseEdge" | "WeaponPart" | "WeaponPartConnection" | "WeaponPartEdge";
+export type NexusGenObjectNames = "AggregateBrand" | "AggregateUser" | "AggregateWeaponBase" | "AggregateWeaponPart" | "Attribute" | "Brand" | "BrandConnection" | "BrandEdge" | "Effect" | "NameByBrand" | "PageInfo" | "Query" | "User" | "UserConnection" | "UserEdge" | "WeaponBase" | "WeaponBaseConnection" | "WeaponBaseEdge" | "WeaponPart" | "WeaponPartConnection" | "WeaponPartEdge";
 
-export type NexusGenInputNames = "AttributeCreateInput" | "AttributeCreateManyInput" | "AttributeCreateOneInput" | "AttributeRestrictedWhereInput" | "AttributeScalarWhereInput" | "AttributeUpdateManyDataInput" | "AttributeUpdateManyInput" | "AttributeUpdateManyWithWhereNestedInput" | "AttributeWhereInput" | "BrandCreateInput" | "BrandCreateOneInput" | "BrandCreateOneWithoutWeaponPartsInput" | "BrandCreateOneWithoutWeaponsInput" | "BrandCreateWithoutWeaponPartsInput" | "BrandCreateWithoutWeaponsInput" | "BrandUpdateInput" | "BrandUpdateManyMutationInput" | "BrandUpdateOneWithoutWeaponPartsInput" | "BrandUpdateOneWithoutWeaponsInput" | "BrandUpdateWithoutWeaponPartsDataInput" | "BrandUpdateWithoutWeaponsDataInput" | "BrandUpsertWithoutWeaponPartsInput" | "BrandUpsertWithoutWeaponsInput" | "BrandWhereInput" | "BrandWhereUniqueInput" | "EffectCreateInput" | "EffectCreateManyInput" | "EffectRestrictedWhereInput" | "EffectScalarWhereInput" | "EffectUpdateManyDataInput" | "EffectUpdateManyInput" | "EffectUpdateManyWithWhereNestedInput" | "EffectWhereInput" | "NameByBrandCreateInput" | "NameByBrandCreateManyInput" | "NameByBrandRestrictedWhereInput" | "NameByBrandScalarWhereInput" | "NameByBrandUpdateManyDataInput" | "NameByBrandUpdateManyInput" | "NameByBrandUpdateManyWithWhereNestedInput" | "NameByBrandWhereInput" | "UserCreateInput" | "UserUpdateInput" | "UserUpdateManyMutationInput" | "UserWhereInput" | "UserWhereUniqueInput" | "WeaponBaseCreateInput" | "WeaponBaseCreateManyWithoutBrandInput" | "WeaponBaseCreateWithoutBrandInput" | "WeaponBaseScalarWhereInput" | "WeaponBaseUpdateInput" | "WeaponBaseUpdateManyDataInput" | "WeaponBaseUpdateManyMutationInput" | "WeaponBaseUpdateManyWithWhereNestedInput" | "WeaponBaseUpdateManyWithoutBrandInput" | "WeaponBaseUpdateWithWhereUniqueWithoutBrandInput" | "WeaponBaseUpdateWithoutBrandDataInput" | "WeaponBaseUpsertWithWhereUniqueWithoutBrandInput" | "WeaponBaseWhereInput" | "WeaponBaseWhereUniqueInput" | "WeaponPartCreateInput" | "WeaponPartCreateManyWithoutBrandInput" | "WeaponPartCreateWithoutBrandInput" | "WeaponPartScalarWhereInput" | "WeaponPartUpdateInput" | "WeaponPartUpdateManyDataInput" | "WeaponPartUpdateManyMutationInput" | "WeaponPartUpdateManyWithWhereNestedInput" | "WeaponPartUpdateManyWithoutBrandInput" | "WeaponPartUpdateWithWhereUniqueWithoutBrandInput" | "WeaponPartUpdateWithoutBrandDataInput" | "WeaponPartUpsertWithWhereUniqueWithoutBrandInput" | "WeaponPartWhereInput" | "WeaponPartWhereUniqueInput";
+export type NexusGenInputNames = "AttributeRestrictedWhereInput" | "AttributeWhereInput" | "BrandWhereInput" | "BrandWhereUniqueInput" | "EffectRestrictedWhereInput" | "EffectWhereInput" | "NameByBrandRestrictedWhereInput" | "NameByBrandWhereInput" | "UserWhereInput" | "UserWhereUniqueInput" | "WeaponBaseWhereInput" | "WeaponBaseWhereUniqueInput" | "WeaponPartWhereInput" | "WeaponPartWhereUniqueInput";
 
 export type NexusGenEnumNames = "BrandOrderByInput" | "ModifierType" | "Rarity" | "UserOrderByInput" | "WeaponBaseOrderByInput" | "WeaponPartOrderByInput" | "WeaponPartType" | "WeaponType";
 
 export type NexusGenInterfaceNames = "Node";
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "Long" | "String";
+export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
 
 export type NexusGenUnionNames = never;
 
