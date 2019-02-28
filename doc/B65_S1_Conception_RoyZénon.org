@@ -52,24 +52,23 @@ Le projet est divisé en deux parties: le serveur et le client web.
      3. applique le "level scaling". Certaines statistiques, comme le dommage, sont à l'échelle du niveau de l'arme.
      4. sélectionne le préfixe qui a la plus grande priorité et détermine le titre de l'arme
 * Présentation des patrons de conceptions envisagés
-** MVVM (Modele - Vue - Vue-Modele)
-   Le framework VueJS utilise le patron MVVM.
+** MVVM (Modèle - Vue - Vue-Modèle)
+   Le framework VueJS est inspiré du patron MVVM. C'est une autre façon de séparer la vue du modèle dans le but d'avoir du code plus propre.
+   La partie Vue-Modèle gère les communications avec le modèle pour la vue.
 ** GraphQL
-   GraphQL est un nouveau standard pour créer des APIs. Il a été créé par Facebook dans le but de régler les problèmes des APIs REST.
+   [[https://graphql.org/][GraphQL]] est un nouveau standard pour créer des APIs. Il a été créé par Facebook dans le but de régler les problèmes des APIs REST.
    Raisons pourquoi le serveur utilise une architecture GraphQL:
    - Permet d'obtenir toutes les données nécessaires avec une seule requête. Avec un API REST, il faudrait faire plusieurs requêtes pour avoir les mêmes données.
    - C'est le client qui détermine les données dont il a besoin, donc le serveur n'envoit pas de données inutiles.
    - Puisque c'est un standard populaire dans le monde du web, il y a une multitude d'outils qui aident au développement (débogueurs de requêtes, librairies, outils d'analyse de performance, etc).
    - Le système de types permet de mieux construire des requêtes parce qu'on sait avoir quelles données on travaille
 * Aspects techniques de la conception
-** cas d'usage
-** diagramme de base de données
+** Cas d'usage
+** Diagramme de base de données
    [[./bd.png]]
-** conception des interfaces usagers
+** Conception des interfaces usagers
 *** Page principale / calcul des statistiques
-*** liste des pièces
-    Vue qui permet de voir la liste de pièces selon le type d'arme sélectionné
+*** liste des pièces/items
     [[./liste-parties.png]]
-*** liste des templates
-*** détails d'une pièce
-*** détails template
+*** Détails d'une pièce
+*** Détails d'un item
