@@ -1,17 +1,50 @@
+#+OPTIONS: toc:nil title:nil num:nil
+\begin{titlepage}
+\centering
+{\scshape\LARGE Cégep du Vieux Montréal \par}
+\vspace{1cm}
+{\scshape\LARGE Projet Synthèse\par}
+\vspace{1.5cm}
+{\huge\bfseries Calculatrice de statistiques d'items dans le jeu Borderlands 2\par}
+\vspace{2cm}
+{\Large\itshape Zénon Roy\par}
+\vfill
+Travail à remettre à\par
+Jean-Christophe Demers
+\vfill
+	{\large \today\par}
+\end{titlepage}
+
 * Présentation générale du projet
+Dans le jeu Borderlands 2, les items sont générés aléatoirement.
+Les items sont composés de pièces qui proviennent des différents fabriquants d'armes dans le jeu.
+Chaque pièce a une influence sur les statistiques finales de l'item (dommage, balles par seconde, munitions, etc).
+Le but du projet est de concevoir un site qui permet de calculer les statistiques finales d'un item en choisissant les pièces qui le compose.
 * Présentation précise du projet
+Le projet est divisé en deux parties: le serveur et le client web.
+** Le serveur
+   - API GraphQL
+     - CRUD sur les types (voir schéma bd)
+     - Calculer les statistiques des items
+   - SSR avec Nuxt
+   - Prisma pour la gestion des données
+** Le client web
+  - Vuetify pour une présentation avec le style Material Design
+  - Vue-Apollo pour faire des requêtes sur le serveur
+  - Consulter et modifier les données
+  - Sélectionner les parties d'un item et faire la requête sur le serveur
 * Présentation des patrons de conceptions envisagés
-** MVVM
+** MVVM (Modele - Vue - Vue-Modele)
 ** GraphQL
 * Aspects techniques de la conception
 ** cas d'usage
 ** diagramme de base de données
    [[./bd.png]]
 ** conception des interfaces usagers
-*** calculatrice
-*** liste parties
+*** Page principale / calcul des statistiques
+*** liste des parties
     [[./liste-parties.png]]
-*** liste templates
-*** détails partie
+*** liste des templates
+*** détails d'une partie
 *** détails template
-
+    
