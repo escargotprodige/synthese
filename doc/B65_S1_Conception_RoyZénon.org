@@ -21,6 +21,7 @@ Dans le jeu Borderlands 2, les items sont générés aléatoirement.
 Les items sont composés de pièces qui proviennent des différents fabriquants d'armes dans le jeu.
 Chaque pièce a une influence sur les statistiques finales de l'item (dommage, balles par seconde, munitions, etc).
 Le but du projet est de concevoir un site qui permet de calculer les statistiques finales d'un item en choisissant les pièces qui le compose.
+Je me suis inspiré de [[http://thegearcalculator.appspot.com/][ce projet]] pour faire le mien.
 * Présentation précise du projet
 Le projet est divisé en deux parties: le serveur et le client web.
 ** Le serveur
@@ -36,13 +37,30 @@ Le projet est divisé en deux parties: le serveur et le client web.
   - Voir les statistiques d'un item selon les pièces choisies
   - Consulter et modifier les données des pièces
   - Consulter et modifier les statistiques de base des items
-  - Utilise la librairie [[https://vue-apollo.netlify.com/][Vue-Apollo]] pour faire des requêtes sur le serveur
-  - Utilise la librairie [[https://vuetifyjs.com/en/][Vuetify]] pour une présentation avec le style Material Design
+  Les technologies utilisées sont:
+  - le framework [[https://vuejs.org/][VueJS]]
+  - la librairie [[https://vue-apollo.netlify.com/][Vue-Apollo]] pour faire des requêtes sur le serveur
+  - la librairie [[https://vuetifyjs.com/en/][Vuetify]] pour une présentation avec le style Material Design
 ** Fonctionnement des items 
-   
+  Voici comment les statistiques d'une arme sont calculées:
+  1. L'utilisateur choisit le type d'arme, son niveau, sa rareté ainsi que son fabriquant.
+  2. Le serveur retourne les pièces qui sont disponibles selon les choix du #1
+  3. L'utilisateur choisit parmis les pièces qui sont disponibles
+  4. Selon les pièces choisies, le serveur fait le calcul suivant:
+     1. applique les effets des pièces aux statistiques de bases (déterminés par les choix du #1)
+     2. applique les bonus de fabriquants (si le fabriquant d'une pièce est le même que celui de l'arme, il y a un certain bonus)
+     3. applique le "level scaling". Certaines statistiques, comme le dommage, sont à l'échelle du niveau de l'arme.
+     4. sélectionne le préfixe qui a la plus grande priorité et détermine le titre de l'arme
 * Présentation des patrons de conceptions envisagés
 ** MVVM (Modele - Vue - Vue-Modele)
+   Le framework VueJS utilise le patron MVVM.
 ** GraphQL
+   GraphQL est un nouveau standard pour créer des APIs. Il a été créé par Facebook dans le but de régler les problèmes des APIs REST.
+   Raisons pourquoi le serveur utilise une architecture GraphQL:
+   - Permet d'obtenir toutes les données nécessaires avec une seule requête. Avec un API REST, il faudrait faire plusieurs requêtes pour avoir les mêmes données.
+   - C'est le client qui détermine les données dont il a besoin, donc le serveur n'envoit pas de données inutiles.
+   - Puisque c'est un standard populaire dans le monde du web, il y a une multitude d'outils qui aident au développement (débogueurs de requêtes, librairies, outils d'analyse de performance, etc).
+   - Le système de types permet de mieux construire des requêtes parce qu'on sait avoir quelles données on travaille
 * Aspects techniques de la conception
 ** cas d'usage
 ** diagramme de base de données
@@ -50,6 +68,7 @@ Le projet est divisé en deux parties: le serveur et le client web.
 ** conception des interfaces usagers
 *** Page principale / calcul des statistiques
 *** liste des pièces
+    Vue qui permet de voir la liste de pièces selon le type d'arme sélectionné
     [[./liste-parties.png]]
 *** liste des templates
 *** détails d'une pièce
