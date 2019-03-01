@@ -64,11 +64,13 @@ Le projet est divisé en deux parties: le serveur et le client web.
    - Le système de types permet de mieux construire des requêtes parce qu'on sait avoir quelles données on travaille
 * Aspects techniques de la conception
 ** Cas d'usage
+   [[./usecases.png]]
 ** Diagramme de base de données
    [[./bd.png]]
 ** Conception des interfaces usagers
 *** Page principale / calcul des statistiques
+    [[./calculatrice.png]]
 *** liste des pièces/items
     [[./liste-parties.png]]
-*** Détails d'une pièce
-*** Détails d'un item
+*** Détails d'une pièce ou un item
+    [[./partie-stats.png]]
