@@ -254,6 +254,7 @@ export type WeaponPartType =
   | "BODY"
   | "BARREL"
   | "ACCESSORY"
+  | "ELEMENTAL"
   | "SIGHT"
   | "GRIP"
   | "STOCK";
@@ -366,12 +367,12 @@ export interface WeaponPartWhereInput {
   effects_some?: EffectWhereInput;
   effects_every?: EffectRestrictedWhereInput;
   effects_none?: EffectRestrictedWhereInput;
-  prefixes_some?: NameByBrandWhereInput;
-  prefixes_every?: NameByBrandRestrictedWhereInput;
-  prefixes_none?: NameByBrandRestrictedWhereInput;
-  titles_some?: NameByBrandWhereInput;
-  titles_every?: NameByBrandRestrictedWhereInput;
-  titles_none?: NameByBrandRestrictedWhereInput;
+  prefixes_some?: PrefixWhereInput;
+  prefixes_every?: PrefixRestrictedWhereInput;
+  prefixes_none?: PrefixRestrictedWhereInput;
+  titles_some?: TitleWhereInput;
+  titles_every?: TitleRestrictedWhereInput;
+  titles_none?: TitleRestrictedWhereInput;
   brand?: BrandWhereInput;
   weaponType?: WeaponType;
   weaponType_not?: WeaponType;
@@ -488,7 +489,59 @@ export interface AttributeRestrictedWhereInput {
   AND?: AttributeRestrictedWhereInput[] | AttributeRestrictedWhereInput;
 }
 
-export interface NameByBrandWhereInput {
+export interface PrefixWhereInput {
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  priority?: Int;
+  priority_not?: Int;
+  priority_in?: Int[] | Int;
+  priority_not_in?: Int[] | Int;
+  priority_lt?: Int;
+  priority_lte?: Int;
+  priority_gt?: Int;
+  priority_gte?: Int;
+  AND?: PrefixWhereInput[] | PrefixWhereInput;
+}
+
+export interface PrefixRestrictedWhereInput {
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  priority?: Int;
+  priority_not?: Int;
+  priority_in?: Int[] | Int;
+  priority_not_in?: Int[] | Int;
+  priority_lt?: Int;
+  priority_lte?: Int;
+  priority_gt?: Int;
+  priority_gte?: Int;
+  AND?: PrefixRestrictedWhereInput[] | PrefixRestrictedWhereInput;
+}
+
+export interface TitleWhereInput {
   name?: String;
   name_not?: String;
   name_in?: String[] | String;
@@ -504,10 +557,10 @@ export interface NameByBrandWhereInput {
   name_ends_with?: String;
   name_not_ends_with?: String;
   brand?: BrandWhereInput;
-  AND?: NameByBrandWhereInput[] | NameByBrandWhereInput;
+  AND?: TitleWhereInput[] | TitleWhereInput;
 }
 
-export interface NameByBrandRestrictedWhereInput {
+export interface TitleRestrictedWhereInput {
   name?: String;
   name_not?: String;
   name_in?: String[] | String;
@@ -522,7 +575,7 @@ export interface NameByBrandRestrictedWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
-  AND?: NameByBrandRestrictedWhereInput[] | NameByBrandRestrictedWhereInput;
+  AND?: TitleRestrictedWhereInput[] | TitleRestrictedWhereInput;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
@@ -583,8 +636,8 @@ export interface WeaponBaseCreateManyWithoutBrandInput {
 }
 
 export interface WeaponBaseCreateWithoutBrandInput {
-  rarity?: Rarity;
-  type?: WeaponType;
+  rarity: Rarity;
+  type: WeaponType;
   attributes?: AttributeCreateManyInput;
 }
 
@@ -594,7 +647,7 @@ export interface AttributeCreateManyInput {
 
 export interface AttributeCreateInput {
   name: String;
-  value?: Float;
+  value: Float;
 }
 
 export interface WeaponPartCreateManyWithoutBrandInput {
@@ -606,8 +659,8 @@ export interface WeaponPartCreateManyWithoutBrandInput {
 
 export interface WeaponPartCreateWithoutBrandInput {
   effects?: EffectCreateManyInput;
-  prefixes?: NameByBrandCreateManyInput;
-  titles?: NameByBrandCreateManyInput;
+  prefixes?: PrefixCreateManyInput;
+  titles?: TitleCreateManyInput;
   weaponType?: WeaponType;
   partType?: WeaponPartType;
 }
@@ -628,11 +681,20 @@ export interface AttributeCreateOneInput {
   create?: AttributeCreateInput;
 }
 
-export interface NameByBrandCreateManyInput {
-  create?: NameByBrandCreateInput[] | NameByBrandCreateInput;
+export interface PrefixCreateManyInput {
+  create?: PrefixCreateInput[] | PrefixCreateInput;
 }
 
-export interface NameByBrandCreateInput {
+export interface PrefixCreateInput {
+  name: String;
+  priority: Int;
+}
+
+export interface TitleCreateManyInput {
+  create?: TitleCreateInput[] | TitleCreateInput;
+}
+
+export interface TitleCreateInput {
   name: String;
   brand?: BrandCreateOneInput;
 }
@@ -796,8 +858,8 @@ export interface WeaponPartUpdateWithWhereUniqueWithoutBrandInput {
 
 export interface WeaponPartUpdateWithoutBrandDataInput {
   effects?: EffectUpdateManyInput;
-  prefixes?: NameByBrandUpdateManyInput;
-  titles?: NameByBrandUpdateManyInput;
+  prefixes?: PrefixUpdateManyInput;
+  titles?: TitleUpdateManyInput;
   weaponType?: WeaponType;
   partType?: WeaponPartType;
 }
@@ -847,15 +909,15 @@ export interface EffectUpdateManyDataInput {
   baseValueScaleConstant?: Float;
 }
 
-export interface NameByBrandUpdateManyInput {
-  create?: NameByBrandCreateInput[] | NameByBrandCreateInput;
-  deleteMany?: NameByBrandScalarWhereInput[] | NameByBrandScalarWhereInput;
+export interface PrefixUpdateManyInput {
+  create?: PrefixCreateInput[] | PrefixCreateInput;
+  deleteMany?: PrefixScalarWhereInput[] | PrefixScalarWhereInput;
   updateMany?:
-    | NameByBrandUpdateManyWithWhereNestedInput[]
-    | NameByBrandUpdateManyWithWhereNestedInput;
+    | PrefixUpdateManyWithWhereNestedInput[]
+    | PrefixUpdateManyWithWhereNestedInput;
 }
 
-export interface NameByBrandScalarWhereInput {
+export interface PrefixScalarWhereInput {
   name?: String;
   name_not?: String;
   name_in?: String[] | String;
@@ -870,17 +932,63 @@ export interface NameByBrandScalarWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
-  AND?: NameByBrandScalarWhereInput[] | NameByBrandScalarWhereInput;
-  OR?: NameByBrandScalarWhereInput[] | NameByBrandScalarWhereInput;
-  NOT?: NameByBrandScalarWhereInput[] | NameByBrandScalarWhereInput;
+  priority?: Int;
+  priority_not?: Int;
+  priority_in?: Int[] | Int;
+  priority_not_in?: Int[] | Int;
+  priority_lt?: Int;
+  priority_lte?: Int;
+  priority_gt?: Int;
+  priority_gte?: Int;
+  AND?: PrefixScalarWhereInput[] | PrefixScalarWhereInput;
+  OR?: PrefixScalarWhereInput[] | PrefixScalarWhereInput;
+  NOT?: PrefixScalarWhereInput[] | PrefixScalarWhereInput;
 }
 
-export interface NameByBrandUpdateManyWithWhereNestedInput {
-  where: NameByBrandScalarWhereInput;
-  data: NameByBrandUpdateManyDataInput;
+export interface PrefixUpdateManyWithWhereNestedInput {
+  where: PrefixScalarWhereInput;
+  data: PrefixUpdateManyDataInput;
 }
 
-export interface NameByBrandUpdateManyDataInput {
+export interface PrefixUpdateManyDataInput {
+  name?: String;
+  priority?: Int;
+}
+
+export interface TitleUpdateManyInput {
+  create?: TitleCreateInput[] | TitleCreateInput;
+  deleteMany?: TitleScalarWhereInput[] | TitleScalarWhereInput;
+  updateMany?:
+    | TitleUpdateManyWithWhereNestedInput[]
+    | TitleUpdateManyWithWhereNestedInput;
+}
+
+export interface TitleScalarWhereInput {
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  AND?: TitleScalarWhereInput[] | TitleScalarWhereInput;
+  OR?: TitleScalarWhereInput[] | TitleScalarWhereInput;
+  NOT?: TitleScalarWhereInput[] | TitleScalarWhereInput;
+}
+
+export interface TitleUpdateManyWithWhereNestedInput {
+  where: TitleScalarWhereInput;
+  data: TitleUpdateManyDataInput;
+}
+
+export interface TitleUpdateManyDataInput {
   name?: String;
 }
 
@@ -945,9 +1053,9 @@ export interface UserUpdateManyMutationInput {
 }
 
 export interface WeaponBaseCreateInput {
-  rarity?: Rarity;
+  rarity: Rarity;
   brand?: BrandCreateOneWithoutWeaponsInput;
-  type?: WeaponType;
+  type: WeaponType;
   attributes?: AttributeCreateManyInput;
 }
 
@@ -994,8 +1102,8 @@ export interface WeaponBaseUpdateManyMutationInput {
 
 export interface WeaponPartCreateInput {
   effects?: EffectCreateManyInput;
-  prefixes?: NameByBrandCreateManyInput;
-  titles?: NameByBrandCreateManyInput;
+  prefixes?: PrefixCreateManyInput;
+  titles?: TitleCreateManyInput;
   brand?: BrandCreateOneWithoutWeaponPartsInput;
   weaponType?: WeaponType;
   partType?: WeaponPartType;
@@ -1013,8 +1121,8 @@ export interface BrandCreateWithoutWeaponPartsInput {
 
 export interface WeaponPartUpdateInput {
   effects?: EffectUpdateManyInput;
-  prefixes?: NameByBrandUpdateManyInput;
-  titles?: NameByBrandUpdateManyInput;
+  prefixes?: PrefixUpdateManyInput;
+  titles?: TitleUpdateManyInput;
   brand?: BrandUpdateOneWithoutWeaponPartsInput;
   weaponType?: WeaponType;
   partType?: WeaponPartType;
@@ -1147,8 +1255,8 @@ export interface BrandSubscription
 
 export interface WeaponBase {
   id: ID_Output;
-  rarity?: Rarity;
-  type?: WeaponType;
+  rarity: Rarity;
+  type: WeaponType;
   attributes?: <T = FragmentableArray<Attribute>>() => T;
 }
 
@@ -1172,7 +1280,7 @@ export interface WeaponBaseSubscription
 
 export interface Attribute {
   name: String;
-  value?: Float;
+  value: Float;
 }
 
 export interface AttributePromise extends Promise<Attribute>, Fragmentable {
@@ -1190,8 +1298,8 @@ export interface AttributeSubscription
 export interface WeaponPart {
   id: ID_Output;
   effects?: <T = FragmentableArray<Effect>>() => T;
-  prefixes?: <T = FragmentableArray<NameByBrand>>() => T;
-  titles?: <T = FragmentableArray<NameByBrand>>() => T;
+  prefixes?: <T = FragmentableArray<Prefix>>() => T;
+  titles?: <T = FragmentableArray<Title>>() => T;
   weaponType?: WeaponType;
   partType?: WeaponPartType;
 }
@@ -1199,8 +1307,8 @@ export interface WeaponPart {
 export interface WeaponPartPromise extends Promise<WeaponPart>, Fragmentable {
   id: () => Promise<ID_Output>;
   effects: <T = FragmentableArray<Effect>>() => T;
-  prefixes: <T = FragmentableArray<NameByBrand>>() => T;
-  titles: <T = FragmentableArray<NameByBrand>>() => T;
+  prefixes: <T = FragmentableArray<Prefix>>() => T;
+  titles: <T = FragmentableArray<Title>>() => T;
   brand: <T = BrandPromise>() => T;
   weaponType: () => Promise<WeaponType>;
   partType: () => Promise<WeaponPartType>;
@@ -1211,8 +1319,8 @@ export interface WeaponPartSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   effects: <T = Promise<AsyncIterator<EffectSubscription>>>() => T;
-  prefixes: <T = Promise<AsyncIterator<NameByBrandSubscription>>>() => T;
-  titles: <T = Promise<AsyncIterator<NameByBrandSubscription>>>() => T;
+  prefixes: <T = Promise<AsyncIterator<PrefixSubscription>>>() => T;
+  titles: <T = Promise<AsyncIterator<TitleSubscription>>>() => T;
   brand: <T = BrandSubscription>() => T;
   weaponType: () => Promise<AsyncIterator<WeaponType>>;
   partType: () => Promise<AsyncIterator<WeaponPartType>>;
@@ -1244,17 +1352,34 @@ export interface EffectSubscription
   baseValueScaleConstant: () => Promise<AsyncIterator<Float>>;
 }
 
-export interface NameByBrand {
+export interface Prefix {
+  name: String;
+  priority: Int;
+}
+
+export interface PrefixPromise extends Promise<Prefix>, Fragmentable {
+  name: () => Promise<String>;
+  priority: () => Promise<Int>;
+}
+
+export interface PrefixSubscription
+  extends Promise<AsyncIterator<Prefix>>,
+    Fragmentable {
+  name: () => Promise<AsyncIterator<String>>;
+  priority: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Title {
   name: String;
 }
 
-export interface NameByBrandPromise extends Promise<NameByBrand>, Fragmentable {
+export interface TitlePromise extends Promise<Title>, Fragmentable {
   name: () => Promise<String>;
   brand: <T = BrandPromise>() => T;
 }
 
-export interface NameByBrandSubscription
-  extends Promise<AsyncIterator<NameByBrand>>,
+export interface TitleSubscription
+  extends Promise<AsyncIterator<Title>>,
     Fragmentable {
   name: () => Promise<AsyncIterator<String>>;
   brand: <T = BrandSubscription>() => T;
@@ -1651,8 +1776,8 @@ export interface WeaponBaseSubscriptionPayloadSubscription
 
 export interface WeaponBasePreviousValues {
   id: ID_Output;
-  rarity?: Rarity;
-  type?: WeaponType;
+  rarity: Rarity;
+  type: WeaponType;
 }
 
 export interface WeaponBasePreviousValuesPromise
@@ -1772,7 +1897,11 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "NameByBrand",
+    name: "Title",
+    embedded: true
+  },
+  {
+    name: "Prefix",
     embedded: true
   },
   {

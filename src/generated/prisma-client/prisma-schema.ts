@@ -20,12 +20,12 @@ type AggregateWeaponPart {
 
 type Attribute {
   name: String!
-  value: Float
+  value: Float!
 }
 
 input AttributeCreateInput {
   name: String!
-  value: Float
+  value: Float!
 }
 
 input AttributeCreateManyInput {
@@ -454,92 +454,6 @@ enum MutationType {
   DELETED
 }
 
-type NameByBrand {
-  name: String!
-  brand: Brand
-}
-
-input NameByBrandCreateInput {
-  name: String!
-  brand: BrandCreateOneInput
-}
-
-input NameByBrandCreateManyInput {
-  create: [NameByBrandCreateInput!]
-}
-
-input NameByBrandRestrictedWhereInput {
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  AND: [NameByBrandRestrictedWhereInput!]
-}
-
-input NameByBrandScalarWhereInput {
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  AND: [NameByBrandScalarWhereInput!]
-  OR: [NameByBrandScalarWhereInput!]
-  NOT: [NameByBrandScalarWhereInput!]
-}
-
-input NameByBrandUpdateManyDataInput {
-  name: String
-}
-
-input NameByBrandUpdateManyInput {
-  create: [NameByBrandCreateInput!]
-  deleteMany: [NameByBrandScalarWhereInput!]
-  updateMany: [NameByBrandUpdateManyWithWhereNestedInput!]
-}
-
-input NameByBrandUpdateManyWithWhereNestedInput {
-  where: NameByBrandScalarWhereInput!
-  data: NameByBrandUpdateManyDataInput!
-}
-
-input NameByBrandWhereInput {
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  brand: BrandWhereInput
-  AND: [NameByBrandWhereInput!]
-}
-
 interface Node {
   id: ID!
 }
@@ -549,6 +463,116 @@ type PageInfo {
   hasPreviousPage: Boolean!
   startCursor: String
   endCursor: String
+}
+
+type Prefix {
+  name: String!
+  priority: Int!
+}
+
+input PrefixCreateInput {
+  name: String!
+  priority: Int!
+}
+
+input PrefixCreateManyInput {
+  create: [PrefixCreateInput!]
+}
+
+input PrefixRestrictedWhereInput {
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  priority: Int
+  priority_not: Int
+  priority_in: [Int!]
+  priority_not_in: [Int!]
+  priority_lt: Int
+  priority_lte: Int
+  priority_gt: Int
+  priority_gte: Int
+  AND: [PrefixRestrictedWhereInput!]
+}
+
+input PrefixScalarWhereInput {
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  priority: Int
+  priority_not: Int
+  priority_in: [Int!]
+  priority_not_in: [Int!]
+  priority_lt: Int
+  priority_lte: Int
+  priority_gt: Int
+  priority_gte: Int
+  AND: [PrefixScalarWhereInput!]
+  OR: [PrefixScalarWhereInput!]
+  NOT: [PrefixScalarWhereInput!]
+}
+
+input PrefixUpdateManyDataInput {
+  name: String
+  priority: Int
+}
+
+input PrefixUpdateManyInput {
+  create: [PrefixCreateInput!]
+  deleteMany: [PrefixScalarWhereInput!]
+  updateMany: [PrefixUpdateManyWithWhereNestedInput!]
+}
+
+input PrefixUpdateManyWithWhereNestedInput {
+  where: PrefixScalarWhereInput!
+  data: PrefixUpdateManyDataInput!
+}
+
+input PrefixWhereInput {
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  priority: Int
+  priority_not: Int
+  priority_in: [Int!]
+  priority_not_in: [Int!]
+  priority_lt: Int
+  priority_lte: Int
+  priority_gt: Int
+  priority_gte: Int
+  AND: [PrefixWhereInput!]
 }
 
 type Query {
@@ -580,6 +604,92 @@ type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   weaponBase(where: WeaponBaseSubscriptionWhereInput): WeaponBaseSubscriptionPayload
   weaponPart(where: WeaponPartSubscriptionWhereInput): WeaponPartSubscriptionPayload
+}
+
+type Title {
+  name: String!
+  brand: Brand
+}
+
+input TitleCreateInput {
+  name: String!
+  brand: BrandCreateOneInput
+}
+
+input TitleCreateManyInput {
+  create: [TitleCreateInput!]
+}
+
+input TitleRestrictedWhereInput {
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [TitleRestrictedWhereInput!]
+}
+
+input TitleScalarWhereInput {
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [TitleScalarWhereInput!]
+  OR: [TitleScalarWhereInput!]
+  NOT: [TitleScalarWhereInput!]
+}
+
+input TitleUpdateManyDataInput {
+  name: String
+}
+
+input TitleUpdateManyInput {
+  create: [TitleCreateInput!]
+  deleteMany: [TitleScalarWhereInput!]
+  updateMany: [TitleUpdateManyWithWhereNestedInput!]
+}
+
+input TitleUpdateManyWithWhereNestedInput {
+  where: TitleScalarWhereInput!
+  data: TitleUpdateManyDataInput!
+}
+
+input TitleWhereInput {
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  brand: BrandWhereInput
+  AND: [TitleWhereInput!]
 }
 
 type User {
@@ -676,9 +786,9 @@ input UserWhereUniqueInput {
 
 type WeaponBase {
   id: ID!
-  rarity: Rarity
+  rarity: Rarity!
   brand: Brand
-  type: WeaponType
+  type: WeaponType!
   attributes: [Attribute!]
 }
 
@@ -689,9 +799,9 @@ type WeaponBaseConnection {
 }
 
 input WeaponBaseCreateInput {
-  rarity: Rarity
+  rarity: Rarity!
   brand: BrandCreateOneWithoutWeaponsInput
-  type: WeaponType
+  type: WeaponType!
   attributes: AttributeCreateManyInput
 }
 
@@ -701,8 +811,8 @@ input WeaponBaseCreateManyWithoutBrandInput {
 }
 
 input WeaponBaseCreateWithoutBrandInput {
-  rarity: Rarity
-  type: WeaponType
+  rarity: Rarity!
+  type: WeaponType!
   attributes: AttributeCreateManyInput
 }
 
@@ -722,8 +832,8 @@ enum WeaponBaseOrderByInput {
 
 type WeaponBasePreviousValues {
   id: ID!
-  rarity: Rarity
-  type: WeaponType
+  rarity: Rarity!
+  type: WeaponType!
 }
 
 input WeaponBaseScalarWhereInput {
@@ -858,8 +968,8 @@ input WeaponBaseWhereUniqueInput {
 type WeaponPart {
   id: ID!
   effects: [Effect!]
-  prefixes: [NameByBrand!]
-  titles: [NameByBrand!]
+  prefixes: [Prefix!]
+  titles: [Title!]
   brand: Brand
   weaponType: WeaponType
   partType: WeaponPartType
@@ -873,8 +983,8 @@ type WeaponPartConnection {
 
 input WeaponPartCreateInput {
   effects: EffectCreateManyInput
-  prefixes: NameByBrandCreateManyInput
-  titles: NameByBrandCreateManyInput
+  prefixes: PrefixCreateManyInput
+  titles: TitleCreateManyInput
   brand: BrandCreateOneWithoutWeaponPartsInput
   weaponType: WeaponType
   partType: WeaponPartType
@@ -887,8 +997,8 @@ input WeaponPartCreateManyWithoutBrandInput {
 
 input WeaponPartCreateWithoutBrandInput {
   effects: EffectCreateManyInput
-  prefixes: NameByBrandCreateManyInput
-  titles: NameByBrandCreateManyInput
+  prefixes: PrefixCreateManyInput
+  titles: TitleCreateManyInput
   weaponType: WeaponType
   partType: WeaponPartType
 }
@@ -961,6 +1071,7 @@ enum WeaponPartType {
   BODY
   BARREL
   ACCESSORY
+  ELEMENTAL
   SIGHT
   GRIP
   STOCK
@@ -968,8 +1079,8 @@ enum WeaponPartType {
 
 input WeaponPartUpdateInput {
   effects: EffectUpdateManyInput
-  prefixes: NameByBrandUpdateManyInput
-  titles: NameByBrandUpdateManyInput
+  prefixes: PrefixUpdateManyInput
+  titles: TitleUpdateManyInput
   brand: BrandUpdateOneWithoutWeaponPartsInput
   weaponType: WeaponType
   partType: WeaponPartType
@@ -1004,8 +1115,8 @@ input WeaponPartUpdateManyWithWhereNestedInput {
 
 input WeaponPartUpdateWithoutBrandDataInput {
   effects: EffectUpdateManyInput
-  prefixes: NameByBrandUpdateManyInput
-  titles: NameByBrandUpdateManyInput
+  prefixes: PrefixUpdateManyInput
+  titles: TitleUpdateManyInput
   weaponType: WeaponType
   partType: WeaponPartType
 }
@@ -1039,12 +1150,12 @@ input WeaponPartWhereInput {
   effects_some: EffectWhereInput
   effects_every: EffectRestrictedWhereInput
   effects_none: EffectRestrictedWhereInput
-  prefixes_some: NameByBrandWhereInput
-  prefixes_every: NameByBrandRestrictedWhereInput
-  prefixes_none: NameByBrandRestrictedWhereInput
-  titles_some: NameByBrandWhereInput
-  titles_every: NameByBrandRestrictedWhereInput
-  titles_none: NameByBrandRestrictedWhereInput
+  prefixes_some: PrefixWhereInput
+  prefixes_every: PrefixRestrictedWhereInput
+  prefixes_none: PrefixRestrictedWhereInput
+  titles_some: TitleWhereInput
+  titles_every: TitleRestrictedWhereInput
+  titles_none: TitleRestrictedWhereInput
   brand: BrandWhereInput
   weaponType: WeaponType
   weaponType_not: WeaponType

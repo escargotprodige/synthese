@@ -1,0 +1,41 @@
+{
+    "brands": [{
+            "name": "Hyperion",
+            "weaponsTypes": ["PISTOL", "SHOTGUN", "SNIPER", "SMG"]
+        },
+        {
+            "name": "Bandit",
+            "weaponsTypes": [
+                "PISTOL",
+                "SHOTGUN",
+                "ASSAULT_RIFLE",
+                "ROCKET_LAUNCHER",
+                "SMG"
+            ]
+        },
+        {
+            "name": "Dahl",
+            "weaponsTypes": ["PISTOL", "ASSAULT_RIFLE", "SNIPER", "SMG"]
+        },
+        {
+            "name": "Jakobs",
+            "weaponsTypes": ["PISTOL", "SHOTGUN", "ASSAULT_RIFLE", "SNIPER"]
+        },
+        {
+            "name": "Maliwan",
+            "weaponsTypes": ["PISTOL", "SNIPER", "ROCKET_LAUNCHER", "SMG"]
+        },
+        {
+            "name": "Tediore",
+            "weaponsTypes": ["PISTOL", "SHOTGUN", "ROCKET_LAUNCHER", "SMG"]
+        },
+        {
+            "name": "Torgue",
+            "weaponsTypes": ["PISTOL", "SHOTGUN", "ASSAULT_RIFLE", "ROCKET_LAUNCHER"]
+        },
+        {
+            "name": "Vladof",
+            "weaponsTypes": ["PISTOL", "ASSAULT_RIFLE", "SNIPER", "ROCKET_LAUNCHER"]
+        }
+    ]
+}

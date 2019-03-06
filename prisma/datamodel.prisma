@@ -31,6 +31,7 @@ enum WeaponPartType {
   BODY
   BARREL
   ACCESSORY
+  ELEMENTAL
   SIGHT
   GRIP
   STOCK
@@ -43,30 +44,35 @@ enum ModifierType {
 
 type Attribute @embedded {
   name: String!
-  value: Float
+  value: Float!
 }
 
 type WeaponBase {
   id: ID! @id
-  rarity: Rarity
+  rarity: Rarity!
   brand: Brand @relation(link: INLINE)
-  type: WeaponType
+  type: WeaponType!
   attributes: [Attribute!]
 }
 
 type WeaponPart {
   id: ID! @id
   effects: [Effect!]
-  prefixes: [NameByBrand!] @relation(name: "Prefixes")
-  titles: [NameByBrand!] @relation(name: "Titles")
+  prefixes: [Prefix!]
+  titles: [Title!]
   brand: Brand @relation(link: INLINE)
   weaponType: WeaponType
   partType: WeaponPartType
 }
 
-type NameByBrand @embedded {
+type Title @embedded {
   name: String!
   brand: Brand
+}
+
+type Prefix @embedded {
+  name: String!
+  priority: Int!
 }
 
 type Effect @embedded {
