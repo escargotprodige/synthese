@@ -1,4 +1,4 @@
-import { prisma } from "../src/generated/prisma-client";
+import { prisma } from "../.yoga/prisma-client";
 
 const data = require("./data.json");
 
