@@ -1,5 +1,5 @@
 {
-  "name": "with-db",
+  "name": "bl2-gear-calc",
   "version": "0.0.0",
   "scripts": {
     "dev": "yoga dev",
