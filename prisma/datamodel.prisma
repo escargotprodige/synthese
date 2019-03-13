@@ -14,7 +14,7 @@ enum Rarity {
 type Brand {
   id: ID! @id
   name: String!
-  weapons: [WeaponBase] 
+  weapons: [WeaponBase]
   weaponParts: [WeaponPart]
 }
 
