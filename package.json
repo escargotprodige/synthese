@@ -10,7 +10,13 @@
     "lint": "echo linting disabled"
   },
   "dependencies": {
-    "yoga": "0.0.15"
+    "@nuxtjs/apollo": "^4.0.0-rc4",
+    "@nuxtjs/vuetify": "^0.5.5",
+    "core-js": "^2.6.5",
+    "graphql-tag": "^2.10.1",
+    "nuxt": "^2.4.5",
+    "vuetify-loader": "^1.2.1",
+    "yoga": "0.0.16"
   },
   "devDependencies": {
     "@types/graphql": "^14.0.4",
