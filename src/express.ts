@@ -12,5 +12,8 @@ if (config.dev) {
 }
 
 export default yogaExpress(app => {
-  app.use(nuxt.render)
+  app.use((req, res, next) => {
+    if (req.path.startsWith('/graphql')) return next()
+    nuxt.render(req, res, next)
+  })
 })

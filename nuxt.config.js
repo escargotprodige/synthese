@@ -3,7 +3,7 @@ module.exports = {
     apollo: {
         clientConfigs: {
             default: {
-                httpEndpoint: 'http://localhost:4000'
+                httpEndpoint: 'http://localhost:4000/graphql'
             }
         }
     }
