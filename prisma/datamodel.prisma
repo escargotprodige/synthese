@@ -43,6 +43,7 @@ enum ModifierType {
 }
 
 type Attribute @embedded {
+  id: ID! @id
   name: String!
   value: Float!
 }
@@ -52,30 +53,33 @@ type WeaponBase {
   rarity: Rarity!
   brand: Brand @relation(link: INLINE)
   type: WeaponType!
-  attributes: [Attribute!]
+  attributes: [Attribute]
 }
 
 type WeaponPart {
   id: ID! @id
-  effects: [Effect!]
-  prefixes: [Prefix!]
-  titles: [Title!]
+  effects: [Effect]
+  prefixes: [Prefix]
+  titles: [Title]
   brand: Brand @relation(link: INLINE)
   weaponType: WeaponType
   partType: WeaponPartType
 }
 
 type Title @embedded {
+  id: ID! @id
   name: String!
   brand: Brand
 }
 
 type Prefix @embedded {
+  id: ID! @id
   name: String!
   priority: Int!
 }
 
 type Effect @embedded {
+  id: ID! @id
   AttributeToModify: Attribute @relation(name: "AttributeToModify")
   modifierType: ModifierType
   baseValueConstant: Float
