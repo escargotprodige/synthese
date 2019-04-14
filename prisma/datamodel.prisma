@@ -50,9 +50,8 @@ type Attribute @embedded {
 
 type WeaponBase {
   id: ID! @id
-  rarity: Rarity!
   brand: Brand @relation(link: INLINE)
-  type: WeaponType!
+  weaponType: WeaponType!
   attributes: [Attribute]
 }
 
