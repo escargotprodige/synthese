@@ -10,16 +10,17 @@ object ->
 	{% function(d) {return {_id: d[1].split(' ')[1], categories: d[4]}} %}
 	
 categories ->
-	category {% function (d) {let output = {}; extractPair(d[0], output); return output; }%}
-	| categories category {% function(d) {const {name, value} = d[1]; d[0][name] = value; return d[0] } %}
+	category {% extractObject %}
+	| categories category {% extractPairs %}
 	
 category ->
 	"=== " name " properties ===" __
 	pairs
 	{% function(d) {return {name: d[1][0].join(''), value: d[4]}} %}
 
-pairs -> pair {% function (d) {let output = {}; const {name, value} = d[0]; output[name] = value; return output; }%}
-	| pairs pair {% function (d) {let val = d[1].value; let name = d[1].name; d[0][name] = val; return d[0]} %} 
+pairs -> 
+	pair {% extractObject %}
+	| pairs pair {% extractPairs %}
 
 pair -> 
 	name "=" value _ {% function(d) {return {name: d[0][0].join(''), value: d[2]}} %}
@@ -44,6 +45,10 @@ newline -> "\r" "\n" | "\r" | "\n" {% function(d) {return null} %}
 function extractPair(kv, output) {
     if(kv.name) { output[kv.name] = kv.value; }
 }
+
+function extractPairs(d) {extractPair(d[1],d[0]); return d[0] }
+
+function extractObject(d) {let output = {}; extractPair(d[0], output); return output; }
 
 function extractObjects(d) {
     let output = {};
