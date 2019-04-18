@@ -11,7 +11,7 @@ let lexer = moo.compile({
   ',': ',',
   object: 'Property dump for object',
   space: {match: /\s+/, lineBreaks: true},
-  sqstring: /'(?:\\["\\]|[^\n"\\])*'/,
+  sqstring: {match: /'(?:\\["\\]|[^\n"\\])*'/, value: s => s.slice(1, -1)},
   name: {match: /[a-zA-Z_]+/, type: moo.keywords({
     properties: 'properties'
   })},
@@ -22,39 +22,41 @@ let lexer = moo.compile({
 
 @lexer lexer
 
-main -> object:+ #{% id %}
+main -> object:+ {% id %}
 
 object ->
 	"***" %space %object %space %sqstring %space "***" %space
 	categories
-	
-	#{% function(d) {return {_id: d[1].split(' ')[1], categories: d[4]}} %}
+	{% function(d) {return {_id: d[4].value, categories: d[8]}} %}
 	
 categories ->
-	category #{% extractObject %}
-	| categories category #{% extractPairs %}
+	category {% extractObject %}
+	| categories category {% extractPairs %}
 	
 category ->
-	"===" %space %name %space %properties %space "===" %space
+	"===" %space name %space %properties %space "===" %space
 	pairs
-	#{% function(d) {return {name: d[1][0], value: d[4]}} %}
+	{% function(d) {return {name: d[2], value: d[8]}} %}
 
 pairs -> 
-	pair #{% extractObject %}
-	| pairs pair #{% extractPairs %}
+	pair {% extractObject %}
+	| pairs pair {% extractPairs %}
 
 pair -> 
-	%name "=" value %space #{% function(d) {return {name: d[0][0], value: d[2]}} %}
+	name "=" value _ {% function(d) {return {name: d[0], value: d[2]}} %}
 	#| name "(" int ")=" value _ {% function(d) {return {list: d[0][0].join(''), value: d[4], idx: d[2]}} %}
 
-group -> "(" pair ("," pair ):* ")" #{% extractObjects %}
+group -> "(" pair ("," pair ):* ")" {% extractObjects %}
 
 value -> 
-	%number #{% id %}
-	| group #{% id %}
-	| %name 
-	| null #{% (d)=> "" %}
+	%number {% function(d) {return parseFloat(d[0].value)} %}
+	| group {% id %}
+	| name {% id %}
+	| null {% (d)=> "" %}
 	| %name %sqstring
+
+name -> %name {% (d)=> d[0].value %}
+_ -> null | %space
 
 @{%
 
