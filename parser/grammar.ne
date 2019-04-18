@@ -1,7 +1,3 @@
-@builtin "whitespace.ne"
-@builtin "string.ne"
-@builtin "number.ne"
-
 @{%
 
 const moo = require('moo')
@@ -13,51 +9,52 @@ let lexer = moo.compile({
   '(': '(',
   ')': ')',
   ',': ',',
+  object: 'Property dump for object',
   space: {match: /\s+/, lineBreaks: true},
   sqstring: /'(?:\\["\\]|[^\n"\\])*'/,
-  name: /[a-zA-Z.]+/,
+  name: {match: /[a-zA-Z_]+/, type: moo.keywords({
+    properties: 'properties'
+  })},
   number: /-?(?:[0-9]|[1-9][0-9]+)(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/
 })
 
 %}
 
-main -> object:+ {% id %}
+@lexer lexer
+
+main -> object:+ #{% id %}
 
 object ->
-	"*** Property dump for object " sqstring " ***" newline
+	"***" %space %object %space %sqstring %space "***" %space
 	categories
-	{% function(d) {return {_id: d[1].split(' ')[1], categories: d[4]}} %}
+	
+	#{% function(d) {return {_id: d[1].split(' ')[1], categories: d[4]}} %}
 	
 categories ->
-	category {% extractObject %}
-	| categories category {% extractPairs %}
+	category #{% extractObject %}
+	| categories category #{% extractPairs %}
 	
 category ->
-	"=== " name " properties ===" __
+	"===" %space %name %space %properties %space "===" %space
 	pairs
-	{% function(d) {return {name: d[1][0].join(''), value: d[4]}} %}
+	#{% function(d) {return {name: d[1][0], value: d[4]}} %}
 
 pairs -> 
-	pair {% extractObject %}
-	| pairs pair {% extractPairs %}
+	pair #{% extractObject %}
+	| pairs pair #{% extractPairs %}
 
 pair -> 
-	name "=" value _ {% function(d) {return {name: d[0][0].join(''), value: d[2]}} %}
+	%name "=" value %space #{% function(d) {return {name: d[0][0], value: d[2]}} %}
 	#| name "(" int ")=" value _ {% function(d) {return {list: d[0][0].join(''), value: d[4], idx: d[2]}} %}
 
-group -> "(" pair ("," pair ):* ")" {% extractObjects %}
+group -> "(" pair ("," pair ):* ")" #{% extractObjects %}
 
 value -> 
-	decimal {% id %}
-	| group {% id %}
-	| name {% function(d) {return d[0][0].join('')} %}
-	| null {% (d)=> "" %}
-	| name sqstring
-
-name -> 
-	[a-zA-Z]:+
-
-newline -> "\r" "\n" | "\r" | "\n" {% function(d) {return null} %}
+	%number #{% id %}
+	| group #{% id %}
+	| %name 
+	| null #{% (d)=> "" %}
+	| %name %sqstring
 
 @{%
 
