@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.0-rc4",
-    "@nuxtjs/vuetify": "^1.0.0-alpha.1",
-    "core-js": "^3.0.1",
+    "@nuxtjs/vuetify": "^0.5.5",
+    "core-js": "^2.6.1",
     "graphql-tag": "^2.10.1",
     "nuxt": "^2.6.2",
     "vuetify-loader": "^1.2.2",
@@ -24,7 +24,7 @@
     "@types/ws": "^6.0.1",
     "moo": "^0.5.0",
     "nearley": "^2.16.0",
-    "prisma": "^1.31.0",
+    "prisma": "^1.31.1",
     "typescript": "^3.4.3"
   },
   "prettier": {
