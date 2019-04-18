@@ -2,7 +2,26 @@
 @builtin "string.ne"
 @builtin "number.ne"
 
-main -> object:+ {% function(d) {return d.flat()} %}
+@{%
+
+const moo = require('moo')
+
+let lexer = moo.compile({
+  '***': '***',
+  '===': '===',
+  '=': '=',
+  '(': '(',
+  ')': ')',
+  ',': ',',
+  space: {match: /\s+/, lineBreaks: true},
+  sqstring: /'(?:\\["\\]|[^\n"\\])*'/,
+  name: /[a-zA-Z.]+/,
+  number: /-?(?:[0-9]|[1-9][0-9]+)(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/
+})
+
+%}
+
+main -> object:+ {% id %}
 
 object ->
 	"*** Property dump for object " sqstring " ***" newline
