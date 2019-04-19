@@ -369,14 +369,6 @@ type Query {
   weaponPartsConnection(after: String, before: String, first: Int, last: Int, orderBy: WeaponPartOrderByInput, skip: Int, where: WeaponPartWhereInput): WeaponPartConnection!
 }
 
-enum Rarity {
-  COMMON
-  LEGENDARY
-  RARE
-  UNCOMMON
-  VERY_RARE
-}
-
 type Title {
   brand: Brand
   id: ID!
@@ -511,7 +503,6 @@ type WeaponBase {
   attributes: [Attribute!]
   brand: Brand
   id: ID!
-  rarity: Rarity!
   weaponType: WeaponType!
 }
 
@@ -529,8 +520,6 @@ type WeaponBaseEdge {
 enum WeaponBaseOrderByInput {
   id_ASC
   id_DESC
-  rarity_ASC
-  rarity_DESC
   weaponType_ASC
   weaponType_DESC
 }
@@ -555,10 +544,6 @@ input WeaponBaseWhereInput {
   id_not_in: [ID!]
   id_not_starts_with: ID
   id_starts_with: ID
-  rarity: Rarity
-  rarity_in: [Rarity!]
-  rarity_not: Rarity
-  rarity_not_in: [Rarity!]
   weaponType: WeaponType
   weaponType_in: [WeaponType!]
   weaponType_not: WeaponType

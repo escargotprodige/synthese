@@ -1,19 +1,18 @@
 *** Property dump for object 'WeaponPartDefinition GD_Weap_AssaultRifle.elemental.AR_Elemental_Shock' ***
 === WeaponPartDefinition properties ===
-  bitch=empty
+  test=empty
   yeet=
   asdf=(test=asdf,aspouilt=asdf,yeet=asfd)
 === WeaponPartDefinitin properties ===
-  bitch=empty
+  test=empty
   yeet=654.3232
   asdf=(test=asdf,aspouilt=asdf,yeet=asfd)
 
 *** Property dump for object 'WeaponPartDefinition GD_Weap_AssaultRifle.elemental.AR_Elemental_Shock' ***
 === WeaponPartDefinition properties ===
-  bitch=empty
-  yeet=
+  test=
   asdf=(test=asdf,aspouilt=asdf,yeet=asfd)
 === WeaponPartDefinitin properties ===
-  bitch=empty
+  test=empty
   yeet=654.3232
   asdf=(test=asdf,aspouilt=asdf,yeet=asfd) 

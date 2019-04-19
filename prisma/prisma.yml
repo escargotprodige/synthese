@@ -8,8 +8,4 @@ generate:
 
 hooks:
   post-deploy:
-    - prisma generate
     - npx nexus-prisma-generate --output ./.yoga/nexus-prisma
-
-seed:
-  run: npx ts-node ./prisma/seed.ts
