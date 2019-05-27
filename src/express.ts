@@ -8,12 +8,12 @@ config.dev = !isProd
 const nuxt = new Nuxt(config)
 
 if (config.dev) {
-  new Builder(nuxt).build()
+  //new Builder(nuxt).build()
 }
 
 export default yogaExpress(app => {
   app.use((req, res, next) => {
     if (req.path.startsWith('/graphql')) return next()
-    nuxt.render(req, res, next)
+    //nuxt.render(req, res, next)
   })
 })

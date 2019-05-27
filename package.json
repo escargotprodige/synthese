@@ -16,7 +16,7 @@
     "graphql-tag": "^2.10.1",
     "nuxt": "^2.6.2",
     "vuetify-loader": "^1.2.2",
-    "yoga": "0.0.18"
+    "yoga": "0.0.19"
   },
   "devDependencies": {
     "@types/graphql": "^14.2.0",

@@ -19,8 +19,8 @@ export default yogaEject({
         typegen: path.join(__dirname, '../.yoga/nexus.ts'),
       },
       nonNullDefaults: {
-        input: true,
-        output: true,
+        input: false,
+        output: false,
       },
       typegenAutoConfig: {
         sources: [
