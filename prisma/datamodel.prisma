@@ -43,7 +43,6 @@ enum ModifierType {
 }
 
 type Attribute @embedded {
-  id: ID! @id
   name: String!
   value: Float!
 }
@@ -79,9 +78,7 @@ type Prefix @embedded {
 
 type Effect @embedded {
   id: ID! @id
-  AttributeToModify: Attribute @relation(name: "AttributeToModify")
+  attributeToModify: Attribute
   modifierType: ModifierType
   baseValueConstant: Float
-  baseValueAttribute: Attribute @relation(name: "BaseValueAttribute")
-  baseValueScaleConstant: Float
 }

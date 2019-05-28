@@ -24,13 +24,16 @@ export default yogaEject({
       },
       typegenAutoConfig: {
         sources: [
-          ,
           {
             source: path.join(__dirname, '../.yoga/prisma-client/index.ts'),
             alias: 'prisma',
           },
-          ,
+          {
+            source: path.join(__dirname, './types.ts'),
+            alias: 'types',
+          },
         ],
+        contextType: 'types.Context',
       },
     })
     const apolloServer = new ApolloServer.ApolloServer({

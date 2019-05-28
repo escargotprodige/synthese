@@ -1,0 +1,31 @@
+attributes = [{
+    name
+    value: range
+}]
+
+WeaponBase(brand, type)
+    brand = brand
+    weaponType = type
+    attributes[]
+        name
+        value = random from range
+
+WeaponPart(brand, weaponType, partType)
+    brand = brand
+    weaponType = weaponType
+    partType = partType
+    effects[1-5]
+        attributeToModify = attributes[random]
+        modifierType = random
+        baseValueConstant = random
+    titles[]
+        name = random
+        brand
+    prefix
+
+for brand in brands:
+    create brand(name = random)
+    for weapontype in brand.weapontypes:
+        WeaponBase(brand, weapontype)
+        for part in parts:
+            WeaponPart(brand, weapontype, part)

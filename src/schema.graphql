@@ -19,27 +19,12 @@ type AggregateWeaponPart {
 }
 
 type Attribute {
-  id: ID!
   name: String!
   value: Float!
 }
 
 input AttributeRestrictedWhereInput {
   AND: [AttributeRestrictedWhereInput!]
-  id: ID
-  id_contains: ID
-  id_ends_with: ID
-  id_gt: ID
-  id_gte: ID
-  id_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_not: ID
-  id_not_contains: ID
-  id_not_ends_with: ID
-  id_not_in: [ID!]
-  id_not_starts_with: ID
-  id_starts_with: ID
   name: String
   name_contains: String
   name_ends_with: String
@@ -66,20 +51,6 @@ input AttributeRestrictedWhereInput {
 
 input AttributeWhereInput {
   AND: [AttributeWhereInput!]
-  id: ID
-  id_contains: ID
-  id_ends_with: ID
-  id_gt: ID
-  id_gte: ID
-  id_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_not: ID
-  id_not_contains: ID
-  id_not_ends_with: ID
-  id_not_in: [ID!]
-  id_not_starts_with: ID
-  id_starts_with: ID
   name: String
   name_contains: String
   name_ends_with: String
@@ -168,18 +139,15 @@ input BrandWhereUniqueInput {
 }
 
 type Effect {
-  AttributeToModify: Attribute
-  baseValueAttribute: Attribute
+  attributeToModify: Attribute
   baseValueConstant: Float
-  baseValueScaleConstant: Float
   id: ID!
   modifierType: ModifierType
 }
 
 input EffectRestrictedWhereInput {
   AND: [EffectRestrictedWhereInput!]
-  AttributeToModify: AttributeRestrictedWhereInput
-  baseValueAttribute: AttributeRestrictedWhereInput
+  attributeToModify: AttributeRestrictedWhereInput
   baseValueConstant: Float
   baseValueConstant_gt: Float
   baseValueConstant_gte: Float
@@ -188,14 +156,6 @@ input EffectRestrictedWhereInput {
   baseValueConstant_lte: Float
   baseValueConstant_not: Float
   baseValueConstant_not_in: [Float!]
-  baseValueScaleConstant: Float
-  baseValueScaleConstant_gt: Float
-  baseValueScaleConstant_gte: Float
-  baseValueScaleConstant_in: [Float!]
-  baseValueScaleConstant_lt: Float
-  baseValueScaleConstant_lte: Float
-  baseValueScaleConstant_not: Float
-  baseValueScaleConstant_not_in: [Float!]
   id: ID
   id_contains: ID
   id_ends_with: ID
@@ -218,8 +178,7 @@ input EffectRestrictedWhereInput {
 
 input EffectWhereInput {
   AND: [EffectWhereInput!]
-  AttributeToModify: AttributeWhereInput
-  baseValueAttribute: AttributeWhereInput
+  attributeToModify: AttributeWhereInput
   baseValueConstant: Float
   baseValueConstant_gt: Float
   baseValueConstant_gte: Float
@@ -228,14 +187,6 @@ input EffectWhereInput {
   baseValueConstant_lte: Float
   baseValueConstant_not: Float
   baseValueConstant_not_in: [Float!]
-  baseValueScaleConstant: Float
-  baseValueScaleConstant_gt: Float
-  baseValueScaleConstant_gte: Float
-  baseValueScaleConstant_in: [Float!]
-  baseValueScaleConstant_lt: Float
-  baseValueScaleConstant_lte: Float
-  baseValueScaleConstant_not: Float
-  baseValueScaleConstant_not_in: [Float!]
   id: ID
   id_contains: ID
   id_ends_with: ID
@@ -361,7 +312,7 @@ type Query {
   user(where: UserWhereUniqueInput!): User
   users(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]!
   usersConnection(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): UserConnection!
-  weapon(weaponInput: WeaponInput): Weapon
+  weapon(baseId: ID, level: Int, parts: WeaponPartWhereInput): Weapon
   weaponBase(where: WeaponBaseWhereUniqueInput!): WeaponBase
   weaponBases(after: String, before: String, first: Int, last: Int, orderBy: WeaponBaseOrderByInput, skip: Int, where: WeaponBaseWhereInput): [WeaponBase!]!
   weaponBasesConnection(after: String, before: String, first: Int, last: Int, orderBy: WeaponBaseOrderByInput, skip: Int, where: WeaponBaseWhereInput): WeaponBaseConnection!
@@ -501,8 +452,10 @@ input UserWhereUniqueInput {
 }
 
 type Weapon {
+  brand: Brand
   level: Int
   name: String
+  weaponType: WeaponType
 }
 
 type WeaponBase {
@@ -558,12 +511,6 @@ input WeaponBaseWhereInput {
 
 input WeaponBaseWhereUniqueInput {
   id: ID
-}
-
-input WeaponInput {
-  level: Int
-  weaponBase: WeaponBaseWhereUniqueInput
-  weaponParts: [WeaponPartWhereInput!]
 }
 
 type WeaponPart {

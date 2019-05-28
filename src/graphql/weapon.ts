@@ -1,29 +1,13 @@
-import {
-  objectType,
-  prismaExtendType,
-  intArg,
-  arg,
-  inputObjectType,
-} from 'yoga'
-
-/*
-query Weapon($weaponBase: WeaponBase, $parts: PartsInput, $level: Int)
-*/
+import { objectType, prismaExtendType, intArg, idArg, arg } from 'yoga'
+import { WeaponPart, WeaponBase } from '../../.yoga/prisma-client'
 
 export const Weapon = objectType({
   name: 'Weapon',
   definition(t) {
     t.int('level', (o: any) => o.level)
     t.string('name', o => 'test')
-  },
-})
-
-export const WeaponInput = inputObjectType({
-  name: 'WeaponInput',
-  definition(t) {
-    t.int('level')
-    t.field('weaponBase', { type: 'WeaponBaseWhereUniqueInput' })
-    t.list.field('weaponParts', { type: 'WeaponPartWhereInput' })
+    t.field('brand', { type: 'Brand' })
+    t.field('weaponType', { type: 'WeaponType' })
   },
 })
 
@@ -32,10 +16,24 @@ export const WeaponQuery = prismaExtendType({
   definition(t) {
     t.field('weapon', {
       type: Weapon,
-      args: { weaponInput: arg({ type: WeaponInput }) },
-      resolve(root, args, context) {
-        //creer objet avec data depuis db
-        return { level: args.weaponInput.level }
+      args: {
+        level: intArg(),
+        baseId: idArg(),
+        parts: arg({ type: 'WeaponPartWhereInput' }),
+      },
+      resolve: async (root, args, ctx): Promise<any> => {
+        const base: WeaponBase = await ctx.prisma.weaponBase({
+          id: args.baseId,
+        })
+        const parts: WeaponPart[] = await ctx.prisma.weaponParts({
+          where: args.parts,
+        })
+        let level = args.level
+
+        //0. determiner marque
+        //1. appliquer effets des parties aux attributs
+        //2. appliquer bonus de marque
+        //3. level scaling
       },
     })
   },
