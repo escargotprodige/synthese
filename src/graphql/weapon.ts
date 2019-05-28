@@ -28,9 +28,7 @@ export const WeaponQuery = prismaExtendType({
         const parts: WeaponPart[] = await ctx.prisma.weaponParts({
           where: args.parts,
         })
-        let level = args.level
-
-        //0. determiner marque
+        
         //1. appliquer effets des parties aux attributs
         //2. appliquer bonus de marque
         //3. level scaling
