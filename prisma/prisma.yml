@@ -9,3 +9,6 @@ generate:
 hooks:
   post-deploy:
     - npx nexus-prisma-generate --client ./.yoga/prisma-client --output ./.yoga/nexus-prisma
+
+seed:
+  run: ts-node ./prisma/seed.ts
