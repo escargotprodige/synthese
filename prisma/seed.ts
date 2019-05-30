@@ -125,7 +125,3 @@ async function main() {
 }
 
 main()
-// async function test() {
-//   console.log(await casual.weapon_part('test', 'asdf', 'asdf'))
-// }
-// test()

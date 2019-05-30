@@ -38,6 +38,7 @@ export default yogaEject({
     })
     const apolloServer = new ApolloServer.ApolloServer({
       schema,
+      context: { prisma },
     })
     const app = express()
 

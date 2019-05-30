@@ -139,15 +139,28 @@ input BrandWhereUniqueInput {
 }
 
 type Effect {
-  attributeToModify: Attribute
+  attributeToModify: String!
   baseValueConstant: Float
   id: ID!
-  modifierType: ModifierType
+  modifierType: ModifierType!
 }
 
 input EffectRestrictedWhereInput {
   AND: [EffectRestrictedWhereInput!]
-  attributeToModify: AttributeRestrictedWhereInput
+  attributeToModify: String
+  attributeToModify_contains: String
+  attributeToModify_ends_with: String
+  attributeToModify_gt: String
+  attributeToModify_gte: String
+  attributeToModify_in: [String!]
+  attributeToModify_lt: String
+  attributeToModify_lte: String
+  attributeToModify_not: String
+  attributeToModify_not_contains: String
+  attributeToModify_not_ends_with: String
+  attributeToModify_not_in: [String!]
+  attributeToModify_not_starts_with: String
+  attributeToModify_starts_with: String
   baseValueConstant: Float
   baseValueConstant_gt: Float
   baseValueConstant_gte: Float
@@ -178,7 +191,20 @@ input EffectRestrictedWhereInput {
 
 input EffectWhereInput {
   AND: [EffectWhereInput!]
-  attributeToModify: AttributeWhereInput
+  attributeToModify: String
+  attributeToModify_contains: String
+  attributeToModify_ends_with: String
+  attributeToModify_gt: String
+  attributeToModify_gte: String
+  attributeToModify_in: [String!]
+  attributeToModify_lt: String
+  attributeToModify_lte: String
+  attributeToModify_not: String
+  attributeToModify_not_contains: String
+  attributeToModify_not_ends_with: String
+  attributeToModify_not_in: [String!]
+  attributeToModify_not_starts_with: String
+  attributeToModify_starts_with: String
   baseValueConstant: Float
   baseValueConstant_gt: Float
   baseValueConstant_gte: Float
@@ -219,92 +245,6 @@ type PageInfo {
   startCursor: String
 }
 
-type Prefix {
-  id: ID!
-  name: String!
-  priority: Int!
-}
-
-input PrefixRestrictedWhereInput {
-  AND: [PrefixRestrictedWhereInput!]
-  id: ID
-  id_contains: ID
-  id_ends_with: ID
-  id_gt: ID
-  id_gte: ID
-  id_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_not: ID
-  id_not_contains: ID
-  id_not_ends_with: ID
-  id_not_in: [ID!]
-  id_not_starts_with: ID
-  id_starts_with: ID
-  name: String
-  name_contains: String
-  name_ends_with: String
-  name_gt: String
-  name_gte: String
-  name_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_not: String
-  name_not_contains: String
-  name_not_ends_with: String
-  name_not_in: [String!]
-  name_not_starts_with: String
-  name_starts_with: String
-  priority: Int
-  priority_gt: Int
-  priority_gte: Int
-  priority_in: [Int!]
-  priority_lt: Int
-  priority_lte: Int
-  priority_not: Int
-  priority_not_in: [Int!]
-}
-
-input PrefixWhereInput {
-  AND: [PrefixWhereInput!]
-  id: ID
-  id_contains: ID
-  id_ends_with: ID
-  id_gt: ID
-  id_gte: ID
-  id_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_not: ID
-  id_not_contains: ID
-  id_not_ends_with: ID
-  id_not_in: [ID!]
-  id_not_starts_with: ID
-  id_starts_with: ID
-  name: String
-  name_contains: String
-  name_ends_with: String
-  name_gt: String
-  name_gte: String
-  name_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_not: String
-  name_not_contains: String
-  name_not_ends_with: String
-  name_not_in: [String!]
-  name_not_starts_with: String
-  name_starts_with: String
-  priority: Int
-  priority_gt: Int
-  priority_gte: Int
-  priority_in: [Int!]
-  priority_lt: Int
-  priority_lte: Int
-  priority_not: Int
-  priority_not_in: [Int!]
-}
-
 type Query {
   brand(where: BrandWhereUniqueInput!): Brand
   brands(after: String, before: String, first: Int, last: Int, orderBy: BrandOrderByInput, skip: Int, where: BrandWhereInput): [Brand!]!
@@ -312,7 +252,7 @@ type Query {
   user(where: UserWhereUniqueInput!): User
   users(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): [User!]!
   usersConnection(after: String, before: String, first: Int, last: Int, orderBy: UserOrderByInput, skip: Int, where: UserWhereInput): UserConnection!
-  weapon(baseId: ID, level: Int, parts: WeaponPartWhereInput): Weapon
+  weapon(baseId: ID, level: Int, parts: [ID!]): Weapon
   weaponBase(where: WeaponBaseWhereUniqueInput!): WeaponBase
   weaponBases(after: String, before: String, first: Int, last: Int, orderBy: WeaponBaseOrderByInput, skip: Int, where: WeaponBaseWhereInput): [WeaponBase!]!
   weaponBasesConnection(after: String, before: String, first: Int, last: Int, orderBy: WeaponBaseOrderByInput, skip: Int, where: WeaponBaseWhereInput): WeaponBaseConnection!
@@ -452,9 +392,11 @@ input UserWhereUniqueInput {
 }
 
 type Weapon {
+  base: WeaponBase
   brand: Brand
   level: Int
   name: String
+  parts: [WeaponPart!]
   weaponType: WeaponType
 }
 
@@ -518,7 +460,7 @@ type WeaponPart {
   effects: [Effect!]
   id: ID!
   partType: WeaponPartType
-  prefixes: [Prefix!]
+  prefix: String
   titles: [Title!]
   weaponType: WeaponType
 }
@@ -539,6 +481,8 @@ enum WeaponPartOrderByInput {
   id_DESC
   partType_ASC
   partType_DESC
+  prefix_ASC
+  prefix_DESC
   weaponType_ASC
   weaponType_DESC
 }
@@ -577,9 +521,20 @@ input WeaponPartWhereInput {
   partType_in: [WeaponPartType!]
   partType_not: WeaponPartType
   partType_not_in: [WeaponPartType!]
-  prefixes_every: PrefixRestrictedWhereInput
-  prefixes_none: PrefixRestrictedWhereInput
-  prefixes_some: PrefixWhereInput
+  prefix: String
+  prefix_contains: String
+  prefix_ends_with: String
+  prefix_gt: String
+  prefix_gte: String
+  prefix_in: [String!]
+  prefix_lt: String
+  prefix_lte: String
+  prefix_not: String
+  prefix_not_contains: String
+  prefix_not_ends_with: String
+  prefix_not_in: [String!]
+  prefix_not_starts_with: String
+  prefix_starts_with: String
   titles_every: TitleRestrictedWhereInput
   titles_none: TitleRestrictedWhereInput
   titles_some: TitleWhereInput
