@@ -13,15 +13,15 @@ const brands = [
   'Torgue',
 ]
 
-// const parts = [
-//   'BODY',
-//   'BARREL',
-//   'ACCESSORY',
-//   'ELEMENTAL',
-//   'SIGHT',
-//   'GRIP',
-//   'STOCK',
-// ]
+const parts = [
+  'BODY',
+  'BARREL',
+  'ACCESSORY',
+  'ELEMENTAL',
+  'SIGHT',
+  'GRIP',
+  'STOCK',
+]
 
 const weaponTypes = [
   'PISTOL',
@@ -67,7 +67,7 @@ let weapon_provider = {
     return {
       attributeToModify: attribute,
       baseValueConstant: casual.random,
-      modifierType: casual.random_element(['add', 'mult']),
+      modifierType: casual.random_element(['PRE_ADD', 'SCALE']),
     }
   },
   attribute(attr) {
@@ -86,21 +86,24 @@ let weapon_provider = {
   weapon_title(brand) {
     return {
       name: casual.word,
-      brand,
+      brand: { connect: { id: brand.id } },
     }
   },
-  weapon_part(
+  async weapon_part(
     brand = casual.company_name,
     weaponType = casual.word,
     partType = casual.word,
   ) {
+    let _brands = await prisma
+      .brands()
+      .$fragment('fragment BrandId on Brand { id }')
     return {
-      brand: { connect: { name: brand } },
+      brand: { connect: { id: brand } },
       weaponType,
       partType,
       prefix: casual.word,
       effects: { create: pickFrom(attributes, 3, casual.effect) },
-      titles: { create: forEach(brands, casual.weapon_title) },
+      titles: { create: forEach(_brands, casual.weapon_title) },
     }
   },
 }
@@ -112,8 +115,17 @@ async function main() {
     const _brand = await prisma.createBrand({ name: brand })
     weaponTypes.forEach(async weapon => {
       await prisma.createWeaponBase(casual.weapon_base(_brand.id, weapon))
+      parts.forEach(async part => {
+        await prisma.createWeaponPart(
+          await casual.weapon_part(_brand.id, weapon, part)
+        )
+      })
     })
   })
 }
 
 main()
+// async function test() {
+//   console.log(await casual.weapon_part('test', 'asdf', 'asdf'))
+// }
+// test()

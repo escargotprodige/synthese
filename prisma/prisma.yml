@@ -11,4 +11,4 @@ hooks:
     - npx nexus-prisma-generate --client ./.yoga/prisma-client --output ./.yoga/nexus-prisma
 
 seed:
-  run: ts-node ./prisma/seed.ts
+  run: ts-node ./prisma/seed.ts -noUnusedLocals

@@ -57,7 +57,7 @@ type WeaponBase {
 type WeaponPart {
   id: ID! @id
   effects: [Effect]
-  prefixes: [Prefix]
+  prefix: String
   titles: [Title]
   brand: Brand @relation(link: INLINE)
   weaponType: WeaponType
@@ -78,7 +78,7 @@ type Prefix @embedded {
 
 type Effect @embedded {
   id: ID! @id
-  attributeToModify: Attribute
-  modifierType: ModifierType
+  attributeToModify: String!
+  modifierType: ModifierType!
   baseValueConstant: Float
 }
