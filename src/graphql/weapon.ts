@@ -80,8 +80,8 @@ export const WeaponQuery = prismaExtendType({
           stats.push({ name: attr, value: modifiedAttributes[attr] })
         }
 
-        //2. appliquer bonus de marque
-        //3. level scaling
+        //TODO: appliquer bonus de marque
+        //TODO: level scaling
 
         return {
           level: args.level,
