@@ -78,7 +78,6 @@
     </v-flex>
     <v-flex xs12 pa-1>
       <v-card>
-        <v-card-title>{{parts.grip}}</v-card-title>
         <v-card-text>
           <h3>Statistiques</h3>
           <v-data-table></v-data-table>
@@ -104,10 +103,10 @@ export default {
         barrel: '',
         accessory: '',
       },
-      brand: 'Hyperion',
-      level: 22,
-      type: 'PISTOL',
-      rarity: 'COMMON',
+      brand: '',
+      level: 1,
+      type: '',
+      rarity: '',
       types: [
         { text: 'Pistol', value: 'PISTOL' },
         { text: 'Shotgun', value: 'SHOTGUN' },
@@ -146,6 +145,23 @@ export default {
         return {
           brand: this.brand,
           weaponType: this.type,
+        }
+      },
+    },
+    weapon: {
+      query: gql`query WeaponStats($base: ID, parts: $parts, $level: Int){
+        weapon(parts: $parts, baseId:$base, level: $level){
+          stats {
+            name
+            value
+          }
+        }
+      }`,
+      variables() {
+        return {
+          base: this.weaponBases[0].id,
+          parts: this.parts,
+          level: this.level,
         }
       },
     },
