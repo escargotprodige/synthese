@@ -42,16 +42,33 @@ enum ModifierType {
   PRE_ADD
 }
 
-type Attribute @embedded {
-  name: String!
-  value: Float!
+type Attributes @embedded {
+  weaponAdditionalRicochets: Float
+  weaponAutomaticBurstCount: Float
+  weaponBaseStatusEffectChanceModifier: Float
+  weaponBurstInterval: Float
+  weaponClipSize: Float
+  weaponCombinedStatusEffectChanceModifier: Float
+  weaponCurrentBurstShotCount: Float
+  weaponDamage: Float
+  weaponEquipTime: Float
+  weaponExtraShotChance: Float
+  weaponMeleeDamage: Float
+  weaponPerShotAccuracyImpulse: Float
+  weaponProjectileSpeedMultiplier: Float
+  weaponProjectilesPerShot: Float
+  weaponReloadSpeed: Float
+  weaponShotCost: Float
+  weaponSpread: Float
+  weaponStatusEffectChanceModifier: Float
+  weaponStatusEffectDamage: Float
 }
 
 type WeaponBase {
   id: ID! @id
   brand: Brand @relation(link: INLINE)
   weaponType: WeaponType!
-  attributes: [Attribute]
+  attributes: Attributes!
 }
 
 type WeaponPart {

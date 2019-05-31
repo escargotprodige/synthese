@@ -70,17 +70,20 @@ let weapon_provider = {
       modifierType: casual.random_element(['PRE_ADD', 'SCALE']),
     }
   },
-  attribute(attr) {
-    return {
-      name: attr,
-      value: casual.integer(0, 15),
-    }
+  attributes() {
+    let obj = {}
+
+    attributes.forEach(attribute => {
+      obj[attribute] = casual.integer(0, 15)
+    })
+
+    return obj
   },
   weapon_base(brand, weaponType = casual.word) {
     return {
       brand: { connect: { id: brand } },
       weaponType,
-      attributes: { create: forEach(attributes, casual.attribute) },
+      attributes: { create: casual.attributes },
     }
   },
   weapon_title(brand) {
@@ -102,7 +105,9 @@ let weapon_provider = {
       weaponType,
       partType,
       prefix: casual.word,
-      effects: { create: pickFrom(attributes, 3, casual.effect) },
+      effects: {
+        create: pickFrom(attributes, casual.integer(1, 6), casual.effect),
+      },
       titles: { create: forEach(_brands, casual.weapon_title) },
     }
   },
@@ -117,7 +122,7 @@ async function main() {
       await prisma.createWeaponBase(casual.weapon_base(_brand.id, weapon))
       parts.forEach(async part => {
         await prisma.createWeaponPart(
-          await casual.weapon_part(_brand.id, weapon, part)
+          await casual.weapon_part(_brand.id, weapon, part),
         )
       })
     })

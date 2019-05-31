@@ -18,61 +18,182 @@ type AggregateWeaponPart {
   count: Int!
 }
 
-type Attribute {
-  name: String!
-  value: Float!
+type Attributes {
+  weaponAdditionalRicochets: Float
+  weaponAutomaticBurstCount: Float
+  weaponBaseStatusEffectChanceModifier: Float
+  weaponBurstInterval: Float
+  weaponClipSize: Float
+  weaponCombinedStatusEffectChanceModifier: Float
+  weaponCurrentBurstShotCount: Float
+  weaponDamage: Float
+  weaponEquipTime: Float
+  weaponExtraShotChance: Float
+  weaponMeleeDamage: Float
+  weaponPerShotAccuracyImpulse: Float
+  weaponProjectileSpeedMultiplier: Float
+  weaponProjectilesPerShot: Float
+  weaponReloadSpeed: Float
+  weaponShotCost: Float
+  weaponSpread: Float
+  weaponStatusEffectChanceModifier: Float
+  weaponStatusEffectDamage: Float
 }
 
-input AttributeRestrictedWhereInput {
-  AND: [AttributeRestrictedWhereInput!]
-  name: String
-  name_contains: String
-  name_ends_with: String
-  name_gt: String
-  name_gte: String
-  name_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_not: String
-  name_not_contains: String
-  name_not_ends_with: String
-  name_not_in: [String!]
-  name_not_starts_with: String
-  name_starts_with: String
-  value: Float
-  value_gt: Float
-  value_gte: Float
-  value_in: [Float!]
-  value_lt: Float
-  value_lte: Float
-  value_not: Float
-  value_not_in: [Float!]
-}
-
-input AttributeWhereInput {
-  AND: [AttributeWhereInput!]
-  name: String
-  name_contains: String
-  name_ends_with: String
-  name_gt: String
-  name_gte: String
-  name_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_not: String
-  name_not_contains: String
-  name_not_ends_with: String
-  name_not_in: [String!]
-  name_not_starts_with: String
-  name_starts_with: String
-  value: Float
-  value_gt: Float
-  value_gte: Float
-  value_in: [Float!]
-  value_lt: Float
-  value_lte: Float
-  value_not: Float
-  value_not_in: [Float!]
+input AttributesWhereInput {
+  AND: [AttributesWhereInput!]
+  weaponAdditionalRicochets: Float
+  weaponAdditionalRicochets_gt: Float
+  weaponAdditionalRicochets_gte: Float
+  weaponAdditionalRicochets_in: [Float!]
+  weaponAdditionalRicochets_lt: Float
+  weaponAdditionalRicochets_lte: Float
+  weaponAdditionalRicochets_not: Float
+  weaponAdditionalRicochets_not_in: [Float!]
+  weaponAutomaticBurstCount: Float
+  weaponAutomaticBurstCount_gt: Float
+  weaponAutomaticBurstCount_gte: Float
+  weaponAutomaticBurstCount_in: [Float!]
+  weaponAutomaticBurstCount_lt: Float
+  weaponAutomaticBurstCount_lte: Float
+  weaponAutomaticBurstCount_not: Float
+  weaponAutomaticBurstCount_not_in: [Float!]
+  weaponBaseStatusEffectChanceModifier: Float
+  weaponBaseStatusEffectChanceModifier_gt: Float
+  weaponBaseStatusEffectChanceModifier_gte: Float
+  weaponBaseStatusEffectChanceModifier_in: [Float!]
+  weaponBaseStatusEffectChanceModifier_lt: Float
+  weaponBaseStatusEffectChanceModifier_lte: Float
+  weaponBaseStatusEffectChanceModifier_not: Float
+  weaponBaseStatusEffectChanceModifier_not_in: [Float!]
+  weaponBurstInterval: Float
+  weaponBurstInterval_gt: Float
+  weaponBurstInterval_gte: Float
+  weaponBurstInterval_in: [Float!]
+  weaponBurstInterval_lt: Float
+  weaponBurstInterval_lte: Float
+  weaponBurstInterval_not: Float
+  weaponBurstInterval_not_in: [Float!]
+  weaponClipSize: Float
+  weaponClipSize_gt: Float
+  weaponClipSize_gte: Float
+  weaponClipSize_in: [Float!]
+  weaponClipSize_lt: Float
+  weaponClipSize_lte: Float
+  weaponClipSize_not: Float
+  weaponClipSize_not_in: [Float!]
+  weaponCombinedStatusEffectChanceModifier: Float
+  weaponCombinedStatusEffectChanceModifier_gt: Float
+  weaponCombinedStatusEffectChanceModifier_gte: Float
+  weaponCombinedStatusEffectChanceModifier_in: [Float!]
+  weaponCombinedStatusEffectChanceModifier_lt: Float
+  weaponCombinedStatusEffectChanceModifier_lte: Float
+  weaponCombinedStatusEffectChanceModifier_not: Float
+  weaponCombinedStatusEffectChanceModifier_not_in: [Float!]
+  weaponCurrentBurstShotCount: Float
+  weaponCurrentBurstShotCount_gt: Float
+  weaponCurrentBurstShotCount_gte: Float
+  weaponCurrentBurstShotCount_in: [Float!]
+  weaponCurrentBurstShotCount_lt: Float
+  weaponCurrentBurstShotCount_lte: Float
+  weaponCurrentBurstShotCount_not: Float
+  weaponCurrentBurstShotCount_not_in: [Float!]
+  weaponDamage: Float
+  weaponDamage_gt: Float
+  weaponDamage_gte: Float
+  weaponDamage_in: [Float!]
+  weaponDamage_lt: Float
+  weaponDamage_lte: Float
+  weaponDamage_not: Float
+  weaponDamage_not_in: [Float!]
+  weaponEquipTime: Float
+  weaponEquipTime_gt: Float
+  weaponEquipTime_gte: Float
+  weaponEquipTime_in: [Float!]
+  weaponEquipTime_lt: Float
+  weaponEquipTime_lte: Float
+  weaponEquipTime_not: Float
+  weaponEquipTime_not_in: [Float!]
+  weaponExtraShotChance: Float
+  weaponExtraShotChance_gt: Float
+  weaponExtraShotChance_gte: Float
+  weaponExtraShotChance_in: [Float!]
+  weaponExtraShotChance_lt: Float
+  weaponExtraShotChance_lte: Float
+  weaponExtraShotChance_not: Float
+  weaponExtraShotChance_not_in: [Float!]
+  weaponMeleeDamage: Float
+  weaponMeleeDamage_gt: Float
+  weaponMeleeDamage_gte: Float
+  weaponMeleeDamage_in: [Float!]
+  weaponMeleeDamage_lt: Float
+  weaponMeleeDamage_lte: Float
+  weaponMeleeDamage_not: Float
+  weaponMeleeDamage_not_in: [Float!]
+  weaponPerShotAccuracyImpulse: Float
+  weaponPerShotAccuracyImpulse_gt: Float
+  weaponPerShotAccuracyImpulse_gte: Float
+  weaponPerShotAccuracyImpulse_in: [Float!]
+  weaponPerShotAccuracyImpulse_lt: Float
+  weaponPerShotAccuracyImpulse_lte: Float
+  weaponPerShotAccuracyImpulse_not: Float
+  weaponPerShotAccuracyImpulse_not_in: [Float!]
+  weaponProjectileSpeedMultiplier: Float
+  weaponProjectileSpeedMultiplier_gt: Float
+  weaponProjectileSpeedMultiplier_gte: Float
+  weaponProjectileSpeedMultiplier_in: [Float!]
+  weaponProjectileSpeedMultiplier_lt: Float
+  weaponProjectileSpeedMultiplier_lte: Float
+  weaponProjectileSpeedMultiplier_not: Float
+  weaponProjectileSpeedMultiplier_not_in: [Float!]
+  weaponProjectilesPerShot: Float
+  weaponProjectilesPerShot_gt: Float
+  weaponProjectilesPerShot_gte: Float
+  weaponProjectilesPerShot_in: [Float!]
+  weaponProjectilesPerShot_lt: Float
+  weaponProjectilesPerShot_lte: Float
+  weaponProjectilesPerShot_not: Float
+  weaponProjectilesPerShot_not_in: [Float!]
+  weaponReloadSpeed: Float
+  weaponReloadSpeed_gt: Float
+  weaponReloadSpeed_gte: Float
+  weaponReloadSpeed_in: [Float!]
+  weaponReloadSpeed_lt: Float
+  weaponReloadSpeed_lte: Float
+  weaponReloadSpeed_not: Float
+  weaponReloadSpeed_not_in: [Float!]
+  weaponShotCost: Float
+  weaponShotCost_gt: Float
+  weaponShotCost_gte: Float
+  weaponShotCost_in: [Float!]
+  weaponShotCost_lt: Float
+  weaponShotCost_lte: Float
+  weaponShotCost_not: Float
+  weaponShotCost_not_in: [Float!]
+  weaponSpread: Float
+  weaponSpread_gt: Float
+  weaponSpread_gte: Float
+  weaponSpread_in: [Float!]
+  weaponSpread_lt: Float
+  weaponSpread_lte: Float
+  weaponSpread_not: Float
+  weaponSpread_not_in: [Float!]
+  weaponStatusEffectChanceModifier: Float
+  weaponStatusEffectChanceModifier_gt: Float
+  weaponStatusEffectChanceModifier_gte: Float
+  weaponStatusEffectChanceModifier_in: [Float!]
+  weaponStatusEffectChanceModifier_lt: Float
+  weaponStatusEffectChanceModifier_lte: Float
+  weaponStatusEffectChanceModifier_not: Float
+  weaponStatusEffectChanceModifier_not_in: [Float!]
+  weaponStatusEffectDamage: Float
+  weaponStatusEffectDamage_gt: Float
+  weaponStatusEffectDamage_gte: Float
+  weaponStatusEffectDamage_in: [Float!]
+  weaponStatusEffectDamage_lt: Float
+  weaponStatusEffectDamage_lte: Float
+  weaponStatusEffectDamage_not: Float
+  weaponStatusEffectDamage_not_in: [Float!]
 }
 
 type Brand {
@@ -261,6 +382,11 @@ type Query {
   weaponPartsConnection(after: String, before: String, first: Int, last: Int, orderBy: WeaponPartOrderByInput, skip: Int, where: WeaponPartWhereInput): WeaponPartConnection!
 }
 
+type Stats {
+  name: String
+  value: Float
+}
+
 type Title {
   brand: Brand
   id: ID!
@@ -397,11 +523,12 @@ type Weapon {
   level: Int
   name: String
   parts: [WeaponPart!]
+  stats: [Stats!]
   weaponType: WeaponType
 }
 
 type WeaponBase {
-  attributes: [Attribute!]
+  attributes: Attributes!
   brand: Brand
   id: ID!
   weaponType: WeaponType!
@@ -427,9 +554,7 @@ enum WeaponBaseOrderByInput {
 
 input WeaponBaseWhereInput {
   AND: [WeaponBaseWhereInput!]
-  attributes_every: AttributeRestrictedWhereInput
-  attributes_none: AttributeRestrictedWhereInput
-  attributes_some: AttributeWhereInput
+  attributes: AttributesWhereInput
   brand: BrandWhereInput
   id: ID
   id_contains: ID
