@@ -4,8 +4,14 @@
       <v-card>
         <v-card-text>
           <h3>Sélection de l'item</h3>
-          <v-select label="Marque" :items="brands" item-text="name" v-model="brand"></v-select>
-          <v-select label="Type" :items="types" v-model="type"></v-select>
+          <v-select
+            label="Marque"
+            :items="brands"
+            item-text="name"
+            item-value="name"
+            v-model="brand"
+          ></v-select>
+          <v-select label="Type" :items="types" item-value="value" v-model="type"></v-select>
           <v-select
             label="Rareté"
             :items="rarities"
@@ -126,6 +132,23 @@ export default {
         }
       }
     `,
+    weaponBases: {
+      query: gql`
+        query SelectBase($brand: String, $weaponType: WeaponType) {
+          weaponBases(
+            where: { brand: { name: $brand }, weaponType: $weaponType }
+          ) {
+            id
+          }
+        }
+      `,
+      variables() {
+        return {
+          brand: this.brand,
+          weaponType: this.type,
+        }
+      },
+    },
   },
   components: {
     PartSelect,
